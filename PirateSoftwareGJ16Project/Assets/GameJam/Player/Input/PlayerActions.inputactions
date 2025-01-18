@@ -2,83 +2,154 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "New action map",
-            "id": "5b0522ee-4b25-4c35-aef7-c1d63a2946ba",
+            "name": "Default",
+            "id": "fd710eab-62c7-49e8-92dc-cb5f1a2b8da0",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "Move",
                     "type": "Value",
-                    "id": "b3285b67-d09e-46b4-ba27-ce51dab54498",
+                    "id": "3f1912eb-fc79-4b51-acbb-b8c7de67ed76",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "4a0f7e1a-9661-4e7a-8c07-a5db2c2ab1af",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "c87cb96b-d90e-4d3e-8f4f-987ed0e9a8b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "2d7658ce-f5ff-4ec4-b7eb-3b97be5d8689",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "2D Vector",
-                    "id": "02a10d71-1551-4693-9a42-a65cfc335308",
+                    "id": "8919d84a-c24d-4b71-8d7b-e9fa1bfc04ed",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Up",
-                    "id": "0e84827b-6f78-4e25-99cb-ccce035bdefe",
+                    "name": "up",
+                    "id": "985cd582-a0f9-4201-a396-6f7c2909cc94",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
-                    "action": "Movement",
+                    "groups": "Gameplay",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Down",
-                    "id": "57379ce1-5f83-47a6-9446-d0e441137634",
+                    "name": "down",
+                    "id": "43c92bad-1eef-412d-ae86-ad64ffc1e9a2",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
-                    "action": "Movement",
+                    "groups": "Gameplay",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Left",
-                    "id": "43f06a99-a111-4183-a3f3-ee0d72d50c8a",
+                    "name": "left",
+                    "id": "87702640-c81f-4641-a34f-ca33e22c94be",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
-                    "action": "Movement",
+                    "groups": "Gameplay",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Right",
-                    "id": "55a34236-78a7-40cb-beb7-30274227ec5d",
+                    "name": "right",
+                    "id": "15e8dca8-a3d8-4876-8074-07f15fd27126",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
-                    "action": "Movement",
+                    "groups": "Gameplay",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "59dc5fa2-ea38-417d-9004-07a90c55cf1e",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gameplay",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cb67577d-1ffb-45a4-8797-a72f64740fcc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gameplay",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "802cce4b-50fe-4042-a928-f338f448c8b0",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gameplay",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
     ],
     "controlSchemes": [
         {
-            "name": "Player",
-            "bindingGroup": "Player",
-            "devices": []
+            "name": "Gameplay",
+            "bindingGroup": "Gameplay",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }
