@@ -20,7 +20,6 @@ public class ShootComponent : MonoBehaviour
     private bool bCanShoot = true;
     private Coroutine shootCoroutine;
     
-    private bool bCanReload = true;
     private Coroutine reloadCoroutine;
     
     // "Key" dictates at what multiple the weapons will be fired e.g. Shotguns may be added to "3" meaning that they will fire every 3rd shot 
@@ -51,13 +50,16 @@ public class ShootComponent : MonoBehaviour
                 }
                 shootCounter++;
                 currentAmmoCount--;
-                Debug.Log("Ammo left: " + currentAmmoCount);
+                //Debug.Log("Ammo left: " + currentAmmoCount);
                 //Debug.Log("Shoot all " + shootCounter + " weapons!");
-                /*foreach (GameObject gun in currentGuns[shootCounter])
+                if (currentGuns.ContainsKey(shootCounter))
                 {
-                    // Get guns Shoot/Fire script
-                    // If not null, gunScript.Shoot()
-                }*/
+                    foreach (GameObject gun in currentGuns[shootCounter])
+                    {
+                        Debug.Log("Firing gun at interval: " + shootCounter);
+                        gun.GetComponent<GunScript>()?.Shoot();
+                    }
+                }
 
                 shootCoroutine = StartCoroutine(UntilNextShot());
             }
@@ -69,13 +71,13 @@ public class ShootComponent : MonoBehaviour
         if (context.started)
         {
             bHoldingTrigger = true;
-            Debug.Log("Start shooting");
+            //Debug.Log("Start shooting");
         }
 
         if (context.canceled)
         {
             bHoldingTrigger = false;
-            Debug.Log("Stop shooting");
+            //Debug.Log("Stop shooting");
         }
     }
 
@@ -120,6 +122,30 @@ public class ShootComponent : MonoBehaviour
         Debug.Log("Weapons reloaded!");
         
         reloadCoroutine = null;
+    }
+
+    public void AddGun(GunScriptableObject newGunData)
+    {
+        int armInterval = newGunData.shootInterval;
+
+        while (armInterval <= MAX_SHOOT_COUNT)
+        {
+            // Need to spawn new gun object in correct position, add the right GunData, and rotate it slightly so not all the same guns are facing in the same direction
+            GameObject newGun = Instantiate(newGunData.gunPrefab, transform);
+            // For now add random values to position, to offset each gun
+            newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(0.75f, 2f), newGun.transform.localPosition.x + Random.Range(-0.6f, 1.6f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
+            
+            if (!currentGuns.ContainsKey(armInterval))
+            {
+                currentGuns.Add(armInterval, new List<GameObject>());
+            }
+            currentGuns[armInterval].Add(newGun);
+            Debug.Log("Added new gun to interval: " + armInterval);
+            
+            armInterval += newGunData.shootInterval;
+        }
+        
+        Debug.Log("Armed with new " + newGunData.name+ "...");
     }
     
     // Source: https://stackoverflow.com/questions/40577412/clear-editor-console-logs-from-script

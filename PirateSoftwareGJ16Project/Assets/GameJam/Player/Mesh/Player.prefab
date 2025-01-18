@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 8611606225704819120}
   - component: {fileID: 7408906963356014316}
   - component: {fileID: 2346948083428135445}
+  - component: {fileID: 2365807780479649880}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -237,6 +238,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2d7658ce-f5ff-4ec4-b7eb-3b97be5d8689
     m_ActionName: 'Default/Reload[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4649987009910519791}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 12465bac-454b-4eaf-b806-d7e8b63f30c6
+    m_ActionName: 'Default/IncreaseLevel[/Keyboard/l]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gameplay
   m_DefaultActionMap: Default
@@ -269,9 +286,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c897667b22f7e40a88bdf1e28f872f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAX_AMMO_COUNT: 60
-  fireRate: 0.3
-  reloadSpeed: 1
+  MAX_AMMO_COUNT: 40
+  MAX_SHOOT_COUNT: 8
+  fireRate: 0.2
+  reloadSpeed: 2
+--- !u!114 &2365807780479649880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649987009910519791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c19e47d03095f4f81dee165bda621f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelUpUI: {fileID: 2403918742282585185, guid: a0d010abfcce3764ab30d4195cbb0c80, type: 3}
 --- !u!1 &8040588704124975337
 GameObject:
   m_ObjectHideFlags: 0
