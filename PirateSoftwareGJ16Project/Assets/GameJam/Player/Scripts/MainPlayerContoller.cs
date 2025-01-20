@@ -20,12 +20,20 @@ public class MainPlayerController : MonoBehaviour
     InputAction moveAction;
 
     private Vector2 lastMousePosition;
+
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        playerInput = GetComponent<PlayerInput>();
+        
+        // Make sure to unlock Cursor when attempting to use UI
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
-        playerInput = GetComponent<PlayerInput>();
+
     }
 
     // Update is called once per frame
@@ -39,7 +47,7 @@ public class MainPlayerController : MonoBehaviour
         // Rotate to camera forward
         Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         Debug.Log(cameraTransform.eulerAngles.y);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
+        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
 
     

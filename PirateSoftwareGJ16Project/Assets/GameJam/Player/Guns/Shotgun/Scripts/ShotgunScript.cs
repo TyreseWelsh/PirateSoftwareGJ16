@@ -26,13 +26,13 @@ public class ShotgunScript : GunScript
         {
             //Debug.Log("Shotgun bullet angle = " + currentShootAngle);
 
-            firingPoint.transform.Rotate(Vector3.up, currentShootAngle);
-            Debug.Log(firingPoint.transform.position);
-            Debug.DrawRay(firingPoint.transform.position, firingPoint.transform.forward * 2, Color.green, 30f);
+            gunMuzzle.transform.Rotate(Vector3.up, currentShootAngle);
+            Debug.Log(gunMuzzle.transform.position);
+            Debug.DrawRay(gunMuzzle.transform.position, gunMuzzle.transform.forward * 2, Color.green, 30f);
             
-            GameObject projectile = Instantiate(gunData.projectilePrefab, firingPoint.transform.position, firingPoint.transform.rotation);
+            GameObject projectile = Instantiate(gunData.projectilePrefab, gunMuzzle.transform.position, gunMuzzle.transform.rotation);
 
-            firingPoint.transform.rotation = Quaternion.identity;
+            gunMuzzle.transform.rotation = Quaternion.identity;
             currentShootAngle += spreadAngle;
         }
     }
@@ -44,9 +44,9 @@ public class ShotgunScript : GunScript
         {
             //Debug.Log("Shotgun bullet angle = " + currentShootAngle);
 
-            firingPoint.transform.Rotate(Vector3.up, currentShootAngle);
-            Debug.Log(firingPoint.transform.position);
-            Debug.DrawRay(firingPoint.transform.position, firingPoint.transform.forward * 2, Color.green, 30f);
+            gunMuzzle.transform.Rotate(Vector3.up, currentShootAngle);
+            Debug.Log(gunMuzzle.transform.position);
+            Debug.DrawRay(gunMuzzle.transform.position, gunMuzzle.transform.forward * 2, Color.green, 30f);
 
             //firingPoint.transform.rotation = Quaternion.identity;
             currentShootAngle += spreadAngle;

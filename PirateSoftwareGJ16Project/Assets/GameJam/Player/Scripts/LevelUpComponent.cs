@@ -32,6 +32,7 @@ public class LevelUpComponent : MonoBehaviour
     {
         level += levelIncreaseAmount;
         
+        Cursor.lockState = CursorLockMode.Confined;
         GameObject newLevelUpMenu = Instantiate(levelUpUI);
         newLevelUpMenu.GetComponent<LevelUpMenuScript>()?.Init(5, gameObject);
     }

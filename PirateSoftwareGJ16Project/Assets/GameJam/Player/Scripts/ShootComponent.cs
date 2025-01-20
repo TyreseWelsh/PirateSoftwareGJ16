@@ -15,9 +15,13 @@ public class ShootComponent : MonoBehaviour
     [SerializeField] private float fireRate = 0.3f;
     [SerializeField] private float reloadSpeed = 1f;
 
+    [Header("")]
+    [SerializeField] private GameObject mesh;
+    [SerializeField] private Transform cameraTransform;
+    
     [Header("BaseGun")] 
     [SerializeField] private GunScriptableObject baseGunData;
-    [SerializeField] private GameObject baseFiringPoint;
+    [SerializeField] private GameObject baseMuzzle;
     
     private bool bHoldingTrigger = false;
     private bool bCanShoot = true;
@@ -92,7 +96,11 @@ public class ShootComponent : MonoBehaviour
 
     private void ShootBaseGun()
     {
-        GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseFiringPoint.transform.position, transform.rotation);
+        Vector3 targetPoint = cameraTransform.forward * 1000f;
+        Debug.DrawRay(baseMuzzle.transform.position, targetPoint, Color.red, 2f);
+        Quaternion projectileRotation =  Quaternion.FromToRotation(baseMuzzle.transform.position, targetPoint);
+        GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, Quaternion.identity);
+        baseProjectile.transform.forward = targetPoint;
     }
     
     public void Reload(InputAction.CallbackContext context)
@@ -135,7 +143,7 @@ public class ShootComponent : MonoBehaviour
     public void AddGun(GunScriptableObject newGunData)
     {
         int armInterval = newGunData.shootInterval;
-        GameObject newGun = Instantiate(newGunData.gunPrefab, transform);
+        GameObject newGun = Instantiate(newGunData.gunPrefab, mesh.transform);
         newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(0.75f, 2f), newGun.transform.localPosition.x + Random.Range(-0.6f, 1.6f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
 
         while (armInterval <= MAX_SHOOT_COUNT)

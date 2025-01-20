@@ -21,8 +21,9 @@ public class PistolBulletScript : MonoBehaviour
         Move();
     }
 
+    // Note: Solution used to fix bullets not following correct direction is to add Space.World (instead of local space)
     private void Move()
     {
-        bulletTransform.Translate(projectileData.moveSpeed * Time.deltaTime * bulletTransform.forward);
+        bulletTransform.Translate(projectileData.moveSpeed * Time.deltaTime * bulletTransform.forward, Space.World);
     }
 }
