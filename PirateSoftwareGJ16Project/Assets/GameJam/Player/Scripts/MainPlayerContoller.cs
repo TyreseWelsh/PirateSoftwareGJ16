@@ -7,7 +7,6 @@ using UnityEngine.TextCore.Text;
 
 public class MainPlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject cameraOrigin;
     [SerializeField] private GameObject mesh;
     [SerializeField] private Transform cameraTransform;
     
@@ -46,17 +45,10 @@ public class MainPlayerController : MonoBehaviour
         
         // Rotate to camera forward
         Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        Debug.Log(cameraTransform.eulerAngles.y);
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
-
     
-    public void MovePlayer(InputAction.CallbackContext context)
+    public void EmptyInputFunction(InputAction.CallbackContext context)
     {
-    }
-
-    public void Look(InputAction.CallbackContext context)
-    {
-
     }
 }
