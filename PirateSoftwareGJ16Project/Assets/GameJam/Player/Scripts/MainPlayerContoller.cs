@@ -29,8 +29,9 @@ public class MainPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        controller.SimpleMove(moveSpeed * Time.deltaTime * moveDirection);
+        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), Physics.gravity.y / 5, Input.GetAxisRaw("Vertical"));
+        //controller.SimpleMove(moveSpeed * Time.deltaTime * moveDirection);
+        controller.Move(moveSpeed * Time.deltaTime * moveDirection);
     }
 
     

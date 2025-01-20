@@ -124,17 +124,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7035022238327635221, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
   m_PrefabInstance: {fileID: 1500052071903834427}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &183386873 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2365807780479649880, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
-  m_PrefabInstance: {fileID: 1500052071903834427}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c19e47d03095f4f81dee165bda621f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &206257403
 GameObject:
   m_ObjectHideFlags: 3
@@ -206,8 +195,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206257403}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5645677, y: -0.009278114, z: 0.0063468534, w: 0.82531023}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.56177837, y: -0.08246135, z: 0.056409106, w: 0.82123274}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000011920929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -285,8 +274,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217383656}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.522755, y: -0.009582757, z: 0.005876797, w: 0.8524089}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.5201723, y: -0.085168935, z: 0.052231368, w: 0.8481975}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000011920929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -540,8 +529,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751113812}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5645676, y: -0.009278114, z: 0.0063468525, w: 0.8253103}
-  m_LocalPosition: {x: -4.98433, y: 5.701497, z: -1.0074217}
+  m_LocalRotation: {x: 0.56177837, y: -0.082461365, z: 0.05640911, w: 0.8212328}
+  m_LocalPosition: {x: -4.6757393, y: 5.701497, z: -0.9729275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1001,7 +990,7 @@ Transform:
   m_GameObject: {fileID: 1735109024}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.98433, y: 5.701497, z: -1.0074217}
+  m_LocalPosition: {x: -4.6757393, y: 5.701497, z: -0.9729275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1097,7 +1086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750835709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.48049596, y: -0.009858365, z: 0.005401722, w: 0.87692493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1357,25 +1346,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8611606225704819120, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611606225704819120, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 183386873}
-    - target: {fileID: 8611606225704819120, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611606225704819120, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelUpComponent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611606225704819120, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+    - target: {fileID: 7408906963356014316, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
+      propertyPath: moveSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

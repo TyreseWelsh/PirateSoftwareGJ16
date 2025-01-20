@@ -10,18 +10,6 @@ public class LevelUpComponent : MonoBehaviour
     private int experienceThreshold = 100;
 
     [SerializeField] private GameObject levelUpUI;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void IncreaseExperience(int increaseAmount)
     {
@@ -45,7 +33,7 @@ public class LevelUpComponent : MonoBehaviour
         level += levelIncreaseAmount;
         
         GameObject newLevelUpMenu = Instantiate(levelUpUI);
-        newLevelUpMenu.GetComponent<LevelUpMenuScript>()?.Init(1, gameObject);
+        newLevelUpMenu.GetComponent<LevelUpMenuScript>()?.Init(5, gameObject);
     }
 
     public void IncreaseLevel(InputAction.CallbackContext context)

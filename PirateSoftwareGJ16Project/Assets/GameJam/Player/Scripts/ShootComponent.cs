@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 using System.Reflection;
+using Unity.VisualScripting;
 
 public class ShootComponent : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class ShootComponent : MonoBehaviour
     [SerializeField] private float fireRate = 0.3f;
     [SerializeField] private float reloadSpeed = 1f;
 
+    [Header("BaseGun")] 
+    [SerializeField] private GunScriptableObject baseGunData;
+    [SerializeField] private GameObject baseFiringPoint;
+    
     private bool bHoldingTrigger = false;
     private bool bCanShoot = true;
     private Coroutine shootCoroutine;
@@ -52,6 +57,8 @@ public class ShootComponent : MonoBehaviour
                 currentAmmoCount--;
                 //Debug.Log("Ammo left: " + currentAmmoCount);
                 //Debug.Log("Shoot all " + shootCounter + " weapons!");
+                
+                ShootBaseGun();
                 if (currentGuns.ContainsKey(shootCounter))
                 {
                     foreach (GameObject gun in currentGuns[shootCounter])
@@ -71,13 +78,11 @@ public class ShootComponent : MonoBehaviour
         if (context.started)
         {
             bHoldingTrigger = true;
-            //Debug.Log("Start shooting");
         }
 
         if (context.canceled)
         {
             bHoldingTrigger = false;
-            //Debug.Log("Stop shooting");
         }
     }
 
@@ -85,6 +90,11 @@ public class ShootComponent : MonoBehaviour
     {
         yield return new WaitForSeconds(fireRate);
         bCanShoot = true;
+    }
+
+    private void ShootBaseGun()
+    {
+        GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseFiringPoint.transform.position, transform.rotation);
     }
     
     public void Reload(InputAction.CallbackContext context)
@@ -127,13 +137,13 @@ public class ShootComponent : MonoBehaviour
     public void AddGun(GunScriptableObject newGunData)
     {
         int armInterval = newGunData.shootInterval;
+        GameObject newGun = Instantiate(newGunData.gunPrefab, transform);
+        newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(0.75f, 2f), newGun.transform.localPosition.x + Random.Range(-0.6f, 1.6f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
 
         while (armInterval <= MAX_SHOOT_COUNT)
         {
             // Need to spawn new gun object in correct position, add the right GunData, and rotate it slightly so not all the same guns are facing in the same direction
-            GameObject newGun = Instantiate(newGunData.gunPrefab, transform);
             // For now add random values to position, to offset each gun
-            newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(0.75f, 2f), newGun.transform.localPosition.x + Random.Range(-0.6f, 1.6f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
             
             if (!currentGuns.ContainsKey(armInterval))
             {
