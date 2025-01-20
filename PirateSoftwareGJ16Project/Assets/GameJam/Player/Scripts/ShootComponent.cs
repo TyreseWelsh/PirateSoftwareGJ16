@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 using System.Reflection;
-using Unity.VisualScripting;
 
 public class ShootComponent : MonoBehaviour
 {
@@ -158,12 +156,13 @@ public class ShootComponent : MonoBehaviour
         Debug.Log("Armed with new " + newGunData.name+ "...");
     }
     
+    // UREGENT NOTE: COMMENT OUT WHEN BUILDING
     // Source: https://stackoverflow.com/questions/40577412/clear-editor-console-logs-from-script
     private void ClearLog()
     {
-        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        /*var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
         var type = assembly.GetType("UnityEditor.LogEntries");
         var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
+        method.Invoke(new object(), null);*/
     }
 }
