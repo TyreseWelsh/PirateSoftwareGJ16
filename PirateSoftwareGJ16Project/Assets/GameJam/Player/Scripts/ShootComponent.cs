@@ -96,8 +96,8 @@ public class ShootComponent : MonoBehaviour
 
     private void ShootBaseGun()
     {
-        Vector3 targetPoint = cameraTransform.forward * 1000f;
-        Debug.DrawRay(baseMuzzle.transform.position, targetPoint, Color.red, 2f);
+        Vector3 targetPoint = cameraTransform.forward * 15f;
+        Debug.DrawRay(cameraTransform.position, targetPoint, Color.red, 2f);
         Quaternion projectileRotation =  Quaternion.FromToRotation(baseMuzzle.transform.position, targetPoint);
         GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, Quaternion.identity);
         baseProjectile.transform.forward = targetPoint;
@@ -143,8 +143,18 @@ public class ShootComponent : MonoBehaviour
     public void AddGun(GunScriptableObject newGunData)
     {
         int armInterval = newGunData.shootInterval;
+        
         GameObject newGun = Instantiate(newGunData.gunPrefab, mesh.transform);
-        newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(0.75f, 2f), newGun.transform.localPosition.x + Random.Range(-0.6f, 1.6f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
+        if(newGun)
+        {
+            GunScript newGunScript = newGun.GetComponent<GunScript>();
+            if(newGunScript)
+            {
+                newGunScript.playerCameraTransform = cameraTransform;
+            }
+            newGun.GetComponent<GunScript>().playerCameraTransform = cameraTransform;
+            newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(-2f, 2f), newGun.transform.localPosition.y + Random.Range(-0.75f, 0.75f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
+        }
 
         while (armInterval <= MAX_SHOOT_COUNT)
         {
