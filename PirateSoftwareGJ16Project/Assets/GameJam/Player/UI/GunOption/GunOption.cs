@@ -20,16 +20,17 @@ public class GunOption : MonoBehaviour
     void Start()
     {
         gunImage.sprite = GunData.image;
-        gunName.text = GunData.name;
+        gunName.text = GunData.gunName;
         gunDescription.text = GunData.description;
     }
 
     public void SelectOption()
     {
-        Debug.Log("Selected " + GunData.name + "!");
+        Debug.Log("Selected " + GunData.gunName + "!");
         if (player)
         {
             player.GetComponent<ShootComponent>()?.AddGun(GunData);
+            Cursor.lockState = CursorLockMode.Locked;
             Destroy(gameObject.transform.parent.gameObject);
         }
     }

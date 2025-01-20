@@ -110,7 +110,7 @@
                 {
                     "name": "",
                     "id": "59dc5fa2-ea38-417d-9004-07a90c55cf1e",
-                    "path": "<Mouse>/position",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gameplay",

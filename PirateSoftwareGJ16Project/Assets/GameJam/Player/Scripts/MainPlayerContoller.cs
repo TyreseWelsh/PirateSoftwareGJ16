@@ -9,8 +9,10 @@ public class MainPlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject cameraOrigin;
     [SerializeField] private GameObject mesh;
+    [SerializeField] private Transform cameraTransform;
     
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float lookRotationSpeed = 40f;
     private Vector3 moveDirection;
     
     CharacterController controller;
@@ -18,19 +20,34 @@ public class MainPlayerController : MonoBehaviour
     InputAction moveAction;
 
     private Vector2 lastMousePosition;
+
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        playerInput = GetComponent<PlayerInput>();
+        
+        // Make sure to unlock Cursor when attempting to use UI
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
-        playerInput = GetComponent<PlayerInput>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        controller.SimpleMove(moveSpeed * Time.deltaTime * moveDirection);
+        moveDirection = moveDirection.x * cameraTransform.right.normalized + moveDirection.z * cameraTransform.forward.normalized;
+        moveDirection.y = Physics.gravity.y / 6;
+        controller.Move(moveSpeed * Time.deltaTime * moveDirection);
+        
+        // Rotate to camera forward
+        Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+        Debug.Log(cameraTransform.eulerAngles.y);
+        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
 
     
@@ -40,15 +57,6 @@ public class MainPlayerController : MonoBehaviour
 
     public void Look(InputAction.CallbackContext context)
     {
-        /*if (mesh != null)
-        {
-            Vector2 currentMousePosition = context.ReadValue<Vector2>();
-            Vector2 mouseMovement = currentMousePosition - lastMousePosition;
-            mouseMovement *= 3;
-            Debug.Log(currentMousePosition - lastMousePosition);
-            mesh.transform.rotation = Quaternion.Euler(mesh.transform.rotation.x + mouseMovement.y, mesh.transform.rotation.y + mouseMovement.x, 0f);
-        
-            lastMousePosition = currentMousePosition;
-        }*/
+
     }
 }

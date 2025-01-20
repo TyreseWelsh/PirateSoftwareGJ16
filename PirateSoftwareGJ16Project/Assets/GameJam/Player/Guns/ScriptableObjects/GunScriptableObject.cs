@@ -7,7 +7,7 @@ public class GunScriptableObject : ScriptableObject
 {
     // Gun image
     public Sprite image;
-    public string name;
+    public string gunName;
     public string description;
     public int shootInterval;
     public GameObject projectilePrefab;
