@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
-public class MainPlayerController : MonoBehaviour
+public class MainPlayerController : MonoBehaviour, IDamageable
 {
     [SerializeField] private GameObject mesh;
     [SerializeField] private Transform cameraTransform;
@@ -20,6 +20,10 @@ public class MainPlayerController : MonoBehaviour
 
     private Vector2 lastMousePosition;
 
+    [Header("Stats")]
+    [SerializeField] private int MAX_HEALTH = 100;
+    public float health { get; set; }
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -32,7 +36,7 @@ public class MainPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        health = MAX_HEALTH;
     }
 
     // Update is called once per frame
@@ -47,8 +51,19 @@ public class MainPlayerController : MonoBehaviour
         Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
-    
+
     public void EmptyInputFunction(InputAction.CallbackContext context)
     {
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        health -= _damage;
+
+        if (health <= 0)
+        {
+            Debug.Log("PLAYER DEAD");
+            Destroy(gameObject);
+        }
     }
 }
