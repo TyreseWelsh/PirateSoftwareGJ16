@@ -30,6 +30,7 @@ public class GunOption : MonoBehaviour
         if (player)
         {
             player.GetComponent<ShootComponent>()?.AddGun(GunData);
+            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Destroy(gameObject.transform.parent.gameObject);
         }

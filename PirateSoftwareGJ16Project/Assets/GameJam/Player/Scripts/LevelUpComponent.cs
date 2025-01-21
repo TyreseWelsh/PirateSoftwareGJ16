@@ -8,6 +8,7 @@ public class LevelUpComponent : MonoBehaviour
     private int experience = 0;
     private int level = 1;
     private int experienceThreshold = 100;
+    [SerializeField] float timeSlow = 0.08f;
 
     [SerializeField] private GameObject levelUpUI;
 
@@ -33,6 +34,7 @@ public class LevelUpComponent : MonoBehaviour
         level += levelIncreaseAmount;
         
         Cursor.lockState = CursorLockMode.Confined;
+        Time.timeScale = timeSlow;
         GameObject newLevelUpMenu = Instantiate(levelUpUI);
         newLevelUpMenu.GetComponent<LevelUpMenuScript>()?.Init(5, gameObject);
     }
