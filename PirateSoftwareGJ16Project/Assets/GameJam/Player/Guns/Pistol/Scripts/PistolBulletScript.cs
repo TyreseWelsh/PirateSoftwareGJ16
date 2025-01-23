@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,5 +26,22 @@ public class PistolBulletScript : MonoBehaviour
     private void Move()
     {
         bulletTransform.Translate(projectileData.moveSpeed * Time.deltaTime * bulletTransform.forward, Space.World);
+    }
+
+    /*private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.GetComponent<IDamageable>() != null)
+        {
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(20);
+        }
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<IDamageable>() != null)
+        {
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(30);
+            Destroy(gameObject);
+        }
     }
 }

@@ -20,9 +20,11 @@ public class MainPlayerController : MonoBehaviour, IDamageable
 
     private Vector2 lastMousePosition;
 
-    [Header("Stats")]
-    [SerializeField] private int MAX_HEALTH = 100;
-    public float health { get; set; }
+    [Header("Stats")] 
+    public int MAX_HEALTH = 100;
+    private int health;
+    
+    public IDamageable.OnDeath onDeathDelegate { get; set; }
 
     private void Awake()
     {
@@ -56,7 +58,7 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     {
     }
 
-    public void TakeDamage(float _damage)
+    public void TakeDamage(int _damage)
     {
         health -= _damage;
 
@@ -65,5 +67,10 @@ public class MainPlayerController : MonoBehaviour, IDamageable
             Debug.Log("PLAYER DEAD");
             Destroy(gameObject);
         }
+    }
+
+    public void Die()
+    {
+        throw new System.NotImplementedException();
     }
 }

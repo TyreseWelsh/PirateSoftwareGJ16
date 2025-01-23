@@ -4,7 +4,9 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public float health { get; set; }
+    public delegate void OnDeath();
     
-    public void TakeDamage(float _damage);
+    public void TakeDamage(int _damage);
+    public void Die();
+
 }

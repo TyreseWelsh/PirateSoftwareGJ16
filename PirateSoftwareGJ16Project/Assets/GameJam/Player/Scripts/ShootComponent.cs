@@ -96,10 +96,10 @@ public class ShootComponent : MonoBehaviour
 
     private void ShootBaseGun()
     {
-        Vector3 targetPoint = cameraTransform.forward * 15f;
-        Debug.DrawRay(cameraTransform.position, targetPoint, Color.red, 2f);
+        Vector3 targetPoint = cameraTransform.forward * 2f;
+        Debug.DrawRay(baseMuzzle.transform.position, targetPoint, Color.red, 200f);
         Quaternion projectileRotation =  Quaternion.FromToRotation(baseMuzzle.transform.position, targetPoint);
-        GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, Quaternion.identity);
+        GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, projectileRotation);
         baseProjectile.transform.forward = targetPoint;
     }
     

@@ -15,14 +15,12 @@ public class GunScript : MonoBehaviour
         
     }
 
-    void Update()
+    protected void Update()
     {
         if (playerCameraTransform)
         {
-            Vector3 targetPoint = playerCameraTransform.forward * 50f;
-            Quaternion newGunRotation = Quaternion.FromToRotation(transform.position, targetPoint);
-            transform.rotation = Quaternion.Euler(transform.rotation.x, newGunRotation.y, transform.rotation.z);
-            Debug.Log("Gun rotation = " + transform.rotation.eulerAngles);
+            Vector3 targetPoint = playerCameraTransform.forward * 5f;
+            transform.rotation = Quaternion.LookRotation(targetPoint);
         }
     }
     
