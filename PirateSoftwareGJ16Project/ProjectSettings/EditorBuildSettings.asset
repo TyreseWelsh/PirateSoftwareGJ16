@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TyreseTestScene.unity
     guid: ab5f0061a67d1254d98c2cbe73d1b9ee
+  - enabled: 1
+    path: Assets/Scenes/LevelBlockout.unity
+    guid: 9a4c2f6b0497b4c45a1cf8cdf568e76b
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4ec1dc5392c4a7440aa53c37a436f14f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
