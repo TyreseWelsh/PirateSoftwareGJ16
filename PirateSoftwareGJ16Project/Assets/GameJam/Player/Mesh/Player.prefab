@@ -131,11 +131,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bab71ecc7e810f468c6d0d73fbd5e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 0}
-  enemy: {fileID: 976520049329067017, guid: 10cd57eb4723d5f4bb93622df04cc5ff, type: 3}
-  spawnRange: 30
-  maxEnemies: 50
-  bIsEnabled: 0
+  playerTarget: {fileID: 4649987009910519791}
+  spawnRange: 60
+  maxEnemies: 150
+  isEnabled: 1
+  enemyTypeX: {fileID: 8212225973304462945, guid: 5685d22bd790926428933bbbf556c25f, type: 3}
+  enemyTypeY: {fileID: 2412864014253872192, guid: 14d9d858de63e724aa9673ed7c015d18, type: 3}
+  enemyTypeZ: {fileID: 2565971690211320093, guid: d4e95959bbc41d44da60fb5baff60e41, type: 3}
+  maxAffectorRange: 210
+  weightAffectorX: {fileID: 0}
+  weightAffectorY: {fileID: 0}
+  weightAffectorZ: {fileID: 0}
+  spawnDelay: 5
 --- !u!1 &4649987009910519791
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +313,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 12465bac-454b-4eaf-b806-d7e8b63f30c6
     m_ActionName: 'Default/IncreaseLevel[/Keyboard/l]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7408906963356014316}
+        m_TargetAssemblyTypeName: MainPlayerController, Assembly-CSharp
+        m_MethodName: CalculateEnemySpawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8ae50a53-93d8-40e3-b443-13df075497b5
+    m_ActionName: 'Default/TempSpawnEnemy[/Keyboard/h]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gameplay
   m_DefaultActionMap: Default
@@ -325,8 +348,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 614550675317284019}
   cameraTransform: {fileID: 0}
-  moveSpeed: 10
+  moveSpeed: 40
   lookRotationSpeed: 40
+  spawner: {fileID: 1183257323735422601}
   MAX_HEALTH: 100
 --- !u!114 &2346948083428135445
 MonoBehaviour:
