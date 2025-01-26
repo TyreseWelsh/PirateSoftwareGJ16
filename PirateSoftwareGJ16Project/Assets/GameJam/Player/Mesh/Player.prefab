@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 8611606225704819120}
   - component: {fileID: 7408906963356014316}
   - component: {fileID: 2346948083428135445}
+  - component: {fileID: 5268629976393512031}
   - component: {fileID: 2365807780479649880}
   m_Layer: 0
   m_Name: Player
@@ -372,6 +373,43 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   baseGunData: {fileID: 11400000, guid: 540a1bffdeb57154693f68cae830211c, type: 2}
   baseMuzzle: {fileID: 8868652142054957755}
+--- !u!114 &5268629976393512031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649987009910519791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5379d0e159b1845a8070d57a3d5b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statObjects:
+  - statName: Health
+    increaseValue: 10
+    increaseType: 0
+  - statName: HealthRegen
+    increaseValue: 3
+    increaseType: 0
+  - statName: Damage
+    increaseValue: 10
+    increaseType: 1
+  - statName: FireRate
+    increaseValue: 8
+    increaseType: 1
+  - statName: ReloadSpeed
+    increaseValue: 8
+    increaseType: 1
+  - statName: CritRate
+    increaseValue: 10
+    increaseType: 1
+  - statName: Range
+    increaseValue: 5
+    increaseType: 1
+  - statName: MoveSpeed
+    increaseValue: 8
+    increaseType: 1
 --- !u!114 &2365807780479649880
 MonoBehaviour:
   m_ObjectHideFlags: 0

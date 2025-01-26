@@ -7,4 +7,5 @@ public class ProjectileScriptableObject : ScriptableObject
 {
     public float moveSpeed;
     public int damage;
+    public float range;
 }

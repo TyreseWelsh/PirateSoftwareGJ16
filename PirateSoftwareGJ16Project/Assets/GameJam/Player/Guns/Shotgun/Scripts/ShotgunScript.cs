@@ -19,7 +19,7 @@ public class ShotgunScript : GunScript
         base.Update();
     }
 
-    public override void Shoot()
+    public override void Shoot(bool isCrit)
     {
         float currentShootAngle = (numProjectiles - 1) * -(spreadAngle / 2);
         for (int i = 0; i < numProjectiles; ++i)

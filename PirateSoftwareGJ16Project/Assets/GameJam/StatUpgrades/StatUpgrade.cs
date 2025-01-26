@@ -11,7 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
         Damage,
         FireRate,
         ReloadSpeed,
-        CriticalRate,
+        CritRate,
         Range,
         MovementSpeed
     }
@@ -49,7 +49,7 @@ public class NewBehaviourScript : MonoBehaviour
             case UpgradeTypes.ReloadSpeed:
                 IncreaseReloadSpeed();
                 break;
-            case UpgradeTypes.CriticalRate:
+            case UpgradeTypes.CritRate:
                 IncreaseCriticalRate();
                 break;
             case UpgradeTypes.Range:

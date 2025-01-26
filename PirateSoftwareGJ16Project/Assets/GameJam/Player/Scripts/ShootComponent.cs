@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 using System.Reflection;
+using Random = UnityEngine.Random;
 
 public class ShootComponent : MonoBehaviour
 {
@@ -14,10 +16,12 @@ public class ShootComponent : MonoBehaviour
     private int shootCounter = 0;
     [SerializeField] private float fireRate = 0.3f;
     [SerializeField] private float reloadSpeed = 1f;
-
+    [SerializeField] private int baseCritRate = 0;
+    
     [Header("")]
     [SerializeField] private GameObject mesh;
     [SerializeField] private Transform cameraTransform;
+    private StatManagerComponent statManager;
     
     [Header("BaseGun")] 
     [SerializeField] private GunScriptableObject baseGunData;
@@ -31,7 +35,13 @@ public class ShootComponent : MonoBehaviour
     
     // "Key" dictates at what multiple the weapons will be fired e.g. Shotguns may be added to "3" meaning that they will fire every 3rd shot 
     private Dictionary<int, List<GameObject>> currentGuns = new Dictionary<int, List<GameObject>>();
-    
+
+
+    private void Awake()
+    {
+        statManager = GetComponent<StatManagerComponent>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,14 +70,17 @@ public class ShootComponent : MonoBehaviour
                 //Debug.Log("Ammo left: " + currentAmmoCount);
                 //Debug.Log("Shoot all " + shootCounter + " weapons!");
                 
-                ShootBaseGun();
-                if (currentGuns.ContainsKey(shootCounter))
+                int critNum = Random.Range(1, 100);
+                bool isCrit = critNum < GetCritRate(true);
+                ShootBaseGun(isCrit);
+
+                // Similar to if (currentGuns.ContainsKey(shootCounter)) but we dont have to access the dictionary twice (one for the if statement, and another in the foreach loop)
+                List<GameObject> currentGunList;
+                currentGuns.TryGetValue(shootCounter, out currentGunList);
+                foreach (GameObject gun in currentGunList)
                 {
-                    foreach (GameObject gun in currentGuns[shootCounter])
-                    {
-                        Debug.Log("Firing gun at interval: " + shootCounter);
-                        gun.GetComponent<GunScript>()?.Shoot();
-                    }
+                    Debug.Log("Firing gun at interval: " + shootCounter);
+                    gun.GetComponent<GunScript>()?.Shoot(isCrit);
                 }
 
                 shootCoroutine = StartCoroutine(UntilNextShot());
@@ -75,6 +88,37 @@ public class ShootComponent : MonoBehaviour
         }
     }
 
+    public float GetFireRate(bool modified)
+    {
+        if (!modified)
+        {
+            return fireRate;
+        }
+        
+        return statManager.ApplyStatIncrease("FireRate", fireRate);
+    }
+
+    public float GetReloadSpeed(bool modified)
+    {
+        if (!modified)
+        {
+            return reloadSpeed;
+        }
+        
+        return statManager.ApplyStatIncrease("ReloadSpeed", reloadSpeed);
+    }
+
+    public int GetCritRate(bool modified)
+    {
+        if (!modified)
+        {
+            // Base crit rate of 5
+            return baseCritRate;
+        }
+        
+        return Mathf.CeilToInt(statManager.ApplyStatIncrease("CritRate", baseCritRate));
+    }
+    
     public void Shoot(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -90,11 +134,11 @@ public class ShootComponent : MonoBehaviour
 
     IEnumerator UntilNextShot()
     {
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSeconds(GetFireRate(true));
         bCanShoot = true;
     }
 
-    private void ShootBaseGun()
+    private void ShootBaseGun(bool isCrit)
     {
         GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, CalculateProjectileRotation());
     }
@@ -146,7 +190,7 @@ public class ShootComponent : MonoBehaviour
     
     IEnumerator Reloading()
     {
-        yield return new WaitForSeconds(reloadSpeed);
+        yield return new WaitForSeconds(GetReloadSpeed(true));
         currentAmmoCount = MAX_AMMO_COUNT;
         shootCounter = 1;
         bCanShoot = true;
@@ -166,6 +210,7 @@ public class ShootComponent : MonoBehaviour
             if(newGunScript)
             {
                 newGunScript.playerCameraTransform = cameraTransform;
+                newGunScript.InitOwner(gameObject);
             }
             newGun.GetComponent<GunScript>().playerCameraTransform = cameraTransform;
             newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(-2f, 2f), newGun.transform.localPosition.y + Random.Range(-0.75f, 0.75f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
@@ -175,13 +220,18 @@ public class ShootComponent : MonoBehaviour
         {
             // Need to spawn new gun object in correct position, add the right GunData, and rotate it slightly so not all the same guns are facing in the same direction
             // For now add random values to position, to offset each gun
-            
-            if (!currentGuns.ContainsKey(armInterval))
+
+            List<GameObject> currentGunList = new List<GameObject>(); 
+            if (!currentGuns.TryGetValue(armInterval, out currentGunList))
             {
                 currentGuns.Add(armInterval, new List<GameObject>());
             }
-            currentGuns[armInterval].Add(newGun);
-            Debug.Log("Added new gun to interval: " + armInterval);
+
+            if (currentGunList.Count > 0)
+            {
+                currentGunList.Add(newGun);
+                Debug.Log("Added new gun to interval: " + armInterval);
+            }
             
             armInterval += newGunData.shootInterval;
         }

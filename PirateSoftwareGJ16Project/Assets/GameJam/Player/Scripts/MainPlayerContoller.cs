@@ -9,6 +9,7 @@ public class MainPlayerController : MonoBehaviour, IDamageable
 {
     [SerializeField] private GameObject mesh;
     [SerializeField] private Transform cameraTransform;
+    private StatManagerComponent statManager;
     
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float lookRotationSpeed = 40f;
@@ -23,8 +24,8 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     private Vector2 lastMousePosition;
 
     [Header("Stats")] 
-    public int MAX_HEALTH = 100;
-    private int health;
+    [SerializeField] private int MAX_HEALTH = 100;
+    private int currentHealth;
     
     public IDamageable.OnDeath onDeathDelegate { get; set; }
 
@@ -32,6 +33,7 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     {
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
+        statManager = GetComponent<StatManagerComponent>();
         
         // Make sure to unlock Cursor when attempting to use UI
         Cursor.lockState = CursorLockMode.Locked;
@@ -40,7 +42,7 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        health = MAX_HEALTH;
+        currentHealth = GetMaxHealth(true);
     }
 
     // Update is called once per frame
@@ -49,13 +51,14 @@ public class MainPlayerController : MonoBehaviour, IDamageable
         moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         moveDirection = moveDirection.x * cameraTransform.right.normalized + moveDirection.z * cameraTransform.forward.normalized;
         moveDirection.y = Physics.gravity.y / 6;
-        controller.Move(moveSpeed * Time.deltaTime * moveDirection);
+        controller.Move(GetMoveSpeed(true) * Time.deltaTime * moveDirection);
         
         // Rotate to camera forward
         Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
 
+    // TEMP
     public void CalculateEnemySpawn(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -64,11 +67,31 @@ public class MainPlayerController : MonoBehaviour, IDamageable
         }
     }
 
+    public int GetMaxHealth(bool modified)
+    {
+        if (!modified)
+        {
+            return MAX_HEALTH;
+        }
+        
+        return Mathf.CeilToInt(statManager.ApplyStatIncrease("MaxHealth", MAX_HEALTH));
+    }
+
+    public float GetMoveSpeed(bool modified)
+    {
+        if (!modified)
+        {
+            return moveSpeed;
+        }
+        
+        return statManager.ApplyStatIncrease("MoveSpeed", moveSpeed);
+    }
+    
     public void TakeDamage(int _damage, GameObject _source)
     {
-        health -= _damage;
+        currentHealth -= _damage;
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }

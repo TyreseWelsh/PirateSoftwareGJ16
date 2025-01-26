@@ -10,6 +10,7 @@ public class GunScriptableObject : ScriptableObject
     public string gunName;
     public string description;
     public int shootInterval;
+    public int projectileDamage;
     public GameObject projectilePrefab;
     public GameObject gunPrefab;
 }
