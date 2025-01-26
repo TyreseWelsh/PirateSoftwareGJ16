@@ -19,7 +19,7 @@ public class StatManagerComponent : MonoBehaviour
     }
 
     [SerializeField] private List<StatObject> statObjects;
-    private Dictionary<string, int> stats = new Dictionary<string, int>();
+    public Dictionary<string, int> currentStats = new Dictionary<string, int>();
 
     
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class StatManagerComponent : MonoBehaviour
     {
         foreach (StatObject statObject in statObjects)
         {
-            stats.Add(statObject.statName, 0);
+            currentStats.Add(statObject.statName, 0);
         }
     }
 
@@ -47,10 +47,10 @@ public class StatManagerComponent : MonoBehaviour
             switch (currentStatObject.increaseType)
             {
                 case IncreaseType.Flat:
-                    return baseNumber + currentStatObject.increaseValue * stats[newStatName];
+                    return baseNumber + currentStatObject.increaseValue * currentStats[newStatName];
                 
                 case IncreaseType.Percentage:
-                    return baseNumber + (baseNumber / 100) * (currentStatObject.increaseValue * stats[newStatName]);
+                    return baseNumber + (baseNumber / 100) * (currentStatObject.increaseValue * currentStats[newStatName]);
                 
                 default:
                     Debug.Log("ERROR: NO SET INCREASE TYPE");
@@ -78,13 +78,13 @@ public class StatManagerComponent : MonoBehaviour
 
     public void IncrementStatAmount(string _statName)
     {
-        stats[_statName]++;
+        currentStats[_statName]++;
     }
     
     int GetStatAmount(string newStatName)
     {
         int statValue;
-        stats.TryGetValue(newStatName, out statValue);
+        currentStats.TryGetValue(newStatName, out statValue);
         
         return -statValue;
     }
