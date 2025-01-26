@@ -169,10 +169,10 @@ public class EnemySpawner : MonoBehaviour
                 Vector3 spawnPoint = hit.point;
                 GameObject enemyObject = Instantiate(enemyType, spawnPoint, Quaternion.identity);
                 enemyObject.GetComponent<AIDestinationSetter>().target = playerTarget.transform;
-                if (enemyObject.GetComponent<BaseEnemy>()?.onDeathDelegate != null)
+                if (enemyObject.GetComponent<HealthComponent>()?.onDeathDelegate != null)
                 {
-                    enemyObject.GetComponent<BaseEnemy>().onDeathDelegate += ReduceCurrentEnemyCount;
-                    enemyObject.GetComponent<BaseEnemy>().onDeathDelegate += CalculateWeighting;
+                    enemyObject.GetComponent<HealthComponent>().onDeathDelegate += ReduceCurrentEnemyCount;
+                    enemyObject.GetComponent<HealthComponent>().onDeathDelegate += CalculateWeighting;
                 }
                 currentEnemies++;
             }
