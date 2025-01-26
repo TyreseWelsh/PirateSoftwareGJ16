@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StatManagerComponent : MonoBehaviour
 {
+    // Both increase additively.
+    // Flat will add the current "increase value" onto the base value
+    // Percentage will find the "increase value" percent of the base value, and then add that new number back onto the base value.
     public enum IncreaseType
     {
         Flat,
@@ -53,12 +56,12 @@ public class StatManagerComponent : MonoBehaviour
                     return baseNumber + (baseNumber / 100) * (currentStatObject.increaseValue * currentStats[newStatName]);
                 
                 default:
-                    Debug.Log("ERROR: NO SET INCREASE TYPE");
+                    //Debug.Log("ERROR: NO SET INCREASE TYPE");
                     return -1;
             }
         }
         
-        Debug.Log("ERROR: INVALID STAT NAME");
+        //Debug.Log("ERROR: INVALID STAT NAME");
         return -1;
     }
 

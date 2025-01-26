@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
-public class MainPlayerController : MonoBehaviour, IDamageable
+public class MainPlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject mesh;
     [SerializeField] private Transform cameraTransform;
@@ -21,13 +21,7 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     PlayerInput playerInput;
     InputAction moveAction;
 
-    private Vector2 lastMousePosition;
-
-    [Header("Stats")] 
-    [SerializeField] private int MAX_HEALTH = 100;
-    private int currentHealth;
-    
-    public IDamageable.OnDeath onDeathDelegate { get; set; }
+    private Vector2 lastMousePosition;    
 
     private void Awake()
     {
@@ -42,7 +36,6 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = GetMaxHealth(true);
     }
 
     // Update is called once per frame
@@ -61,20 +54,10 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     // TEMP
     public void CalculateEnemySpawn(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        /*if (context.performed)
         {
             spawner.GetComponent<EnemySpawner>()?.CalculateWeighting();
-        }
-    }
-
-    public int GetMaxHealth(bool modified)
-    {
-        if (!modified)
-        {
-            return MAX_HEALTH;
-        }
-        
-        return Mathf.CeilToInt(statManager.ApplyStatIncrease("MaxHealth", MAX_HEALTH));
+        }*/
     }
 
     public float GetMoveSpeed(bool modified)
@@ -87,19 +70,5 @@ public class MainPlayerController : MonoBehaviour, IDamageable
         return statManager.ApplyStatIncrease("MoveSpeed", moveSpeed);
     }
     
-    public void TakeDamage(int _damage, GameObject _source)
-    {
-        currentHealth -= _damage;
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void Die()
-    {
-        Debug.Log("PLAYER DEAD");
-        Destroy(gameObject);
-    }
 }

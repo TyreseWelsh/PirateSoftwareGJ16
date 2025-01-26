@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: PistolData
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  name: Pistol
+  gunName: 
   description: A basic pistol.
   shootInterval: 1
+  projectileDamage: 30
   projectilePrefab: {fileID: 5831594215651449197, guid: 30f0559065fca274e88389f6adf1b688, type: 3}
   gunPrefab: {fileID: 1193461257150886797, guid: f45ea70eae4b92b4bb40c0fca908fa1f, type: 3}

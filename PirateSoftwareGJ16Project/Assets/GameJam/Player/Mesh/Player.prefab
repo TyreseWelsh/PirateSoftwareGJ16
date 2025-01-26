@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 7735432966658023567}
   - component: {fileID: 8611606225704819120}
   - component: {fileID: 7408906963356014316}
+  - component: {fileID: 3131283363963040204}
   - component: {fileID: 2346948083428135445}
   - component: {fileID: 5268629976393512031}
   - component: {fileID: 2365807780479649880}
@@ -352,7 +353,25 @@ MonoBehaviour:
   moveSpeed: 40
   lookRotationSpeed: 40
   spawner: {fileID: 1183257323735422601}
+--- !u!114 &3131283363963040204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649987009910519791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186cc8511527daa48b8d5849bda3f9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MAX_HEALTH: 100
+  currentHealth: 0
+  canRegen: 1
+  regenDelayTime: 3
+  baseRegenAmount: 0.5
+  regenRate: 1
+  debugEnabled: 0
 --- !u!114 &2346948083428135445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +388,7 @@ MonoBehaviour:
   MAX_SHOOT_COUNT: 8
   fireRate: 0.2
   reloadSpeed: 2
+  baseCritRate: 0
   mesh: {fileID: 614550675317284019}
   cameraTransform: {fileID: 0}
   baseGunData: {fileID: 11400000, guid: 540a1bffdeb57154693f68cae830211c, type: 2}
@@ -403,7 +423,7 @@ MonoBehaviour:
     increaseType: 1
   - statName: CritRate
     increaseValue: 10
-    increaseType: 1
+    increaseType: 0
   - statName: Range
     increaseValue: 5
     increaseType: 1

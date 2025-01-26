@@ -827,6 +827,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5268629976393512031, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
+      propertyPath: statObjects.Array.data[5].increaseType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7035022238327635221, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.6
@@ -886,8 +890,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4649987009910519791, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1500052071903834430}
   m_SourcePrefab: {fileID: 100100000, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
+--- !u!1 &1500052071903834428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4649987009910519791, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
+  m_PrefabInstance: {fileID: 1500052071903834427}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1500052071903834430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500052071903834428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186cc8511527daa48b8d5849bda3f9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HEALTH: 100
+  currentHealth: 0
+  canRegen: 1
+  regenDelayTime: 3
+  baseRegenAmount: 0.5
+  regenRate: 1
+  debugEnabled: 0
 --- !u!1001 &5442756943471245877
 PrefabInstance:
   m_ObjectHideFlags: 0
