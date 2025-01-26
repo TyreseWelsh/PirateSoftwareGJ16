@@ -6,7 +6,7 @@ public interface IDamageable
 {
     public delegate void OnDeath();
     
-    public void TakeDamage(int _damage);
+    public void TakeDamage(int _damage, GameObject _source);
     public void Die();
 
 }

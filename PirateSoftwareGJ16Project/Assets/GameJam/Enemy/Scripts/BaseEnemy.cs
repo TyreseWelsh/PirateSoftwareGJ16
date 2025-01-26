@@ -21,7 +21,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         
     }
 
-    public void TakeDamage(int _damage)
+    public void TakeDamage(int _damage, GameObject _source)
     {
         Debug.Log(gameObject.name + " is damaged!");
         health -= _damage;

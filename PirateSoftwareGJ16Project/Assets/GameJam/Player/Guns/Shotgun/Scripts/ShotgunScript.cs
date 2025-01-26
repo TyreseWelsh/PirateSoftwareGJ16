@@ -21,14 +21,13 @@ public class ShotgunScript : GunScript
 
     public override void Shoot()
     {
-       
         float currentShootAngle = (numProjectiles - 1) * -(spreadAngle / 2);
         for (int i = 0; i < numProjectiles; ++i)
         {
-            transform.Rotate(Vector3.up, currentShootAngle);
+            gunMuzzle.transform.Rotate(Vector3.up, currentShootAngle);
             Debug.DrawRay(gunMuzzle.transform.position, transform.forward * 2, Color.green, 30f);
             
-            GameObject projectile = Instantiate(gunData.projectilePrefab, gunMuzzle.transform.position, transform.rotation);
+            GameObject projectile = Instantiate(gunData.projectilePrefab, gunMuzzle.transform.position, gunMuzzle.transform.rotation);
             
             currentShootAngle += spreadAngle;
         }

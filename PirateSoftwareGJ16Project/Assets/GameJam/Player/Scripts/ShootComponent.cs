@@ -96,11 +96,26 @@ public class ShootComponent : MonoBehaviour
 
     private void ShootBaseGun()
     {
-        Vector3 targetPoint = cameraTransform.forward * 2f;
-        Debug.DrawRay(baseMuzzle.transform.position, targetPoint, Color.red, 200f);
-        Quaternion projectileRotation =  Quaternion.FromToRotation(baseMuzzle.transform.position, targetPoint);
-        GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, projectileRotation);
-        baseProjectile.transform.forward = targetPoint;
+        GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, CalculateProjectileRotation());
+    }
+    
+    private Quaternion CalculateProjectileRotation()
+    {
+        Vector3 targetPoint = cameraTransform.position + cameraTransform.forward * 30f;
+        Vector3 lookDirection = targetPoint - baseMuzzle.transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
+        
+        Quaternion projectileRotation = lookRotation;
+
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward * 15, out hit))
+        {
+            lookDirection = hit.point - baseMuzzle.transform.position;
+            Debug.DrawRay(baseMuzzle.transform.position, lookDirection * 15, Color.red, 1f);
+            projectileRotation = Quaternion.LookRotation(lookDirection.normalized);
+        }
+
+        return projectileRotation;
     }
     
     public void Reload(InputAction.CallbackContext context)

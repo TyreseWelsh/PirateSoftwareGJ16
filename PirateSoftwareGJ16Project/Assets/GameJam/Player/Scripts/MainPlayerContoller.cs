@@ -13,6 +13,8 @@ public class MainPlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float lookRotationSpeed = 40f;
     private Vector3 moveDirection;
+
+    [SerializeField] GameObject spawner;
     
     CharacterController controller;
     PlayerInput playerInput;
@@ -54,23 +56,27 @@ public class MainPlayerController : MonoBehaviour, IDamageable
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
 
-    public void EmptyInputFunction(InputAction.CallbackContext context)
+    public void CalculateEnemySpawn(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            spawner.GetComponent<EnemySpawner>()?.CalculateWeighting();
+        }
     }
 
-    public void TakeDamage(int _damage)
+    public void TakeDamage(int _damage, GameObject _source)
     {
         health -= _damage;
 
         if (health <= 0)
         {
-            Debug.Log("PLAYER DEAD");
-            Destroy(gameObject);
+            Die();
         }
     }
 
     public void Die()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("PLAYER DEAD");
+        Destroy(gameObject);
     }
 }

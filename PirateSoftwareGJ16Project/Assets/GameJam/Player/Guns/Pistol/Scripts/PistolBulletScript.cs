@@ -40,7 +40,7 @@ public class PistolBulletScript : MonoBehaviour
     {
         if (other.gameObject.GetComponent<IDamageable>() != null)
         {
-            other.gameObject.GetComponent<IDamageable>().TakeDamage(30);
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(30, gameObject);
             Destroy(gameObject);
         }
     }
