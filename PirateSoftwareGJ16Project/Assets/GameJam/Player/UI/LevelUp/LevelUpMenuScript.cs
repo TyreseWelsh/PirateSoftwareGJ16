@@ -20,7 +20,8 @@ public class LevelUpMenuScript : MonoBehaviour
     public void Init(int numGunOptions, GameObject newPlayer)
     {
         SetPlayer(newPlayer);
-
+        
+        Time.timeScale = 0.1f;
         // Setting first gunOption spawn location
         float gunOptionSpawnLocationX = (numGunOptions - 1) * -gunOptionsDistance;
         // NOTE: With multiple gun options we will need to calculate the offset based on the number of options

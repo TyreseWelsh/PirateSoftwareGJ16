@@ -95,6 +95,7 @@ public class PistolBulletScript : MonoBehaviour
 
             if (playerLevelUpComponent)
             {
+                other.gameObject.GetComponent<HealthComponent>().onDeathDelegate -= playerLevelUpComponent.AddToExperience;
                 other.gameObject.GetComponent<HealthComponent>().onDeathDelegate += playerLevelUpComponent.AddToExperience;
             }
             other.gameObject.GetComponent<IDamageable>().TakeDamage(newDamage, gameObject);

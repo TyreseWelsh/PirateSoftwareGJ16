@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,13 @@ public class LevelUpComponent : MonoBehaviour
     public int experienceThreshold = 100;
 
     [SerializeField] private GameObject levelUpUI;
+
+
+    private void Update()
+    {
+        Debug.LogWarning("CURRENT EXPERIENCE= " + experience);
+        Debug.LogWarning("CURRENT EXPERIENCETHRESHOLD= " + experienceThreshold);
+    }
 
     // For game jam
     public void AddToExperience()
@@ -27,11 +35,14 @@ public class LevelUpComponent : MonoBehaviour
         if (experience >= experienceThreshold)
         {
             int oldExperienceThreshold = experienceThreshold;
+            int extraExperience = experience - oldExperienceThreshold;
+
+            experienceThreshold *= Mathf.CeilToInt(1.5f);
             LevelUp(1);
-            experience = 0;
             
+            experience = 0;
             // Call function again to check if we have enough xp to levelup again
-            IncreaseExperience(experience - oldExperienceThreshold);
+            IncreaseExperience(extraExperience);
         }
     }
 
