@@ -10,8 +10,8 @@ using Random = UnityEngine.Random;
 public class ShootComponent : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private int MAX_AMMO_COUNT = 40;
-    private int currentAmmoCount = 0;
+    [SerializeField] public int MAX_AMMO_COUNT = 40;
+    [HideInInspector]public int currentAmmoCount = 0;
     [SerializeField] private int MAX_SHOOT_COUNT = 4;
     private int shootCounter = 0;
     [SerializeField] private float fireRate = 0.3f;

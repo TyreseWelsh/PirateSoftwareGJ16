@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour, IDamageable
 {
     private StatManagerComponent statManager;
-    
+    [SerializeField] private GameObject player;
     [Header("Health Stats")]
     [SerializeField] public int MAX_HEALTH = 120;
     [HideInInspector] public float currentHealth;
@@ -24,10 +25,15 @@ public class HealthComponent : MonoBehaviour, IDamageable
     [Header("Debug")]
     [SerializeField] private bool debugEnabled = false;
 
+    private void Awake()
+    {
+        statManager = player.GetComponent<StatManagerComponent>();
+    }
+
     private void Start()
     {
-        currentHealth = GetMaxHealth(true);
-        statManager = GetComponent<StatManagerComponent>();
+        currentHealth = GetMaxHealth(false);
+        
     }
 
     public void StartRegenDelay(float delay)

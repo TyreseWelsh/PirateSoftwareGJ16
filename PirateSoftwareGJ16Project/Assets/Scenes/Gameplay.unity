@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1001 &223035001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1 &423034349
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1 &750132566
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1 &1046535850
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1 &1204410444
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1 &1676791438
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1 &1748155820
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1 &1841636114
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e85c8019b34594bb281c1ece78931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawned: 0
+  occupied: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
