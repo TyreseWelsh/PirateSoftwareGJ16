@@ -24779,6 +24779,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4601733028705902, guid: 33771a1a04d924d4bb5b7baaa65a729d, type: 3}
   m_PrefabInstance: {fileID: 434302697}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1532620726 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5209499058187579152, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+  m_PrefabInstance: {fileID: 8346038194855494475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1535772395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33558,6 +33563,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4883762814713038, guid: baebdd3b26f756b4c8f1b2d2efe1cf42, type: 3}
   m_PrefabInstance: {fileID: 1302866659}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2133657445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1492736537746123046, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+  m_PrefabInstance: {fileID: 8346038194855494475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2138315662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34109,6 +34125,94 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 816966762}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: upgradeBar
+      value: 
+      objectReference: {fileID: 1532620726}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: experienceBar
+      value: 
+      objectReference: {fileID: 2133657445}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: slotsUsed.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: 'slotsUsed.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: 'slotsUsed.Array.data[4]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: f4901d816d5e8b84b8d9841f3c202ba5, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[1].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 69f0ca6339fba2c4c8fa587fe9f77b2d, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[2].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 747e6055171f5fb41a7e333a5cfe2914, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[3].image
+      value: 
+      objectReference: {fileID: 21300000, guid: fb597ce83cd4b19469e2e1260582b8f1, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[4].image
+      value: 
+      objectReference: {fileID: 21300000, guid: a8a5e740d8d41de4e80fbec4a2b4b765, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[5].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 0eb366118ee6e124f91041e67323a81e, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[6].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f54ae85a7042cc4fa93a529cced9f79, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[7].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 363a91e295e98fa48b2a3dd3745013bc, type: 3}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[0].statName
+      value: MaxHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[1].statName
+      value: HealthRegen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[2].statName
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[3].statName
+      value: FireRate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[4].statName
+      value: ReloadSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[5].statName
+      value: CritRate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[6].statName
+      value: Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047537938549684412, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
+      propertyPath: statObjectIcons.Array.data[7].statName
+      value: MoveSpeed
+      objectReference: {fileID: 0}
     - target: {fileID: 7075635912000071265, guid: 4660ca73f3365924ca148df5a18e669f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,6 +83,7 @@ public class StatManagerComponent : MonoBehaviour
     {
         Debug.Log("Applying Stat Increase to: " + _statName);
         currentStats[_statName]++;
+        BroadcastMessage("updateUI", _statName);
     }
     
     int GetStatAmount(string newStatName)
