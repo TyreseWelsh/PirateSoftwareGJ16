@@ -869,7 +869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255798195813810501, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
       propertyPath: isEnabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7255798195813810501, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
+      propertyPath: spawnDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7255798195813810501, guid: 51fd5ab4d845c984bb126b48a884bcc2, type: 3}
       propertyPath: weightAffectorX

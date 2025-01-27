@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 8502212187241308499}
   - component: {fileID: 1040237969425633087}
   - component: {fileID: 7169139672791259849}
+  - component: {fileID: 7170097496165248334}
   - component: {fileID: 444130596247846241}
   m_Layer: 0
   m_Name: SwordEnemy
@@ -329,7 +330,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09456e26678b2648b754513dc11686c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7170097496165248334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212225973304462945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186cc8511527daa48b8d5849bda3f9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MAX_HEALTH: 100
+  currentHealth: 0
+  canRegen: 0
+  regenDelayTime: 3
+  baseRegenAmount: 0.5
+  regenRate: 1
+  debugEnabled: 0
 --- !u!114 &444130596247846241
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -155,6 +155,13 @@ public class ShootComponent : MonoBehaviour
     private void ShootBaseGun(bool isCrit)
     {
         GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, CalculateProjectileRotation());
+        PistolBulletScript projectileScript = baseProjectile.GetComponent<PistolBulletScript>();
+
+        if (projectileScript != null)
+        {
+            projectileScript.InitOwner(gameObject);
+            projectileScript.isCrit = isCrit;
+        }
     }
     
     private Quaternion CalculateProjectileRotation()

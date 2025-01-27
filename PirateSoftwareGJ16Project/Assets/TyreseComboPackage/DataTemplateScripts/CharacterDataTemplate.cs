@@ -9,6 +9,7 @@ public class CharacterDataTemplate : ScriptableObject
     
     public GameObject weapon;
     public ComboDataTemplate basicComboData;
+    public int experienceOnDeath;
     
     [Header("Damaged Data")] 
     public Material damageFlashMaterial;

@@ -16,6 +16,7 @@ MonoBehaviour:
   moveSpeed: 6
   weapon: {fileID: 0}
   basicComboData: {fileID: 0}
+  experienceOnDeath: 20
   damageFlashMaterial: {fileID: 0}
   originalMaterial: {fileID: 0}
   damageFlashDuration: 0.1

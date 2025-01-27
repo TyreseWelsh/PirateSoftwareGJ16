@@ -54,9 +54,9 @@ public class GunScript : MonoBehaviour
     
     public virtual void Shoot(bool isCrit)
     {
-        GameObject projectile = Instantiate(gunData.projectilePrefab, gunMuzzle.transform.position, transform.rotation);
-        // Change script to base projectile script (not PistolBulletScript)
-        PistolBulletScript projectileScript = projectile.GetComponent<PistolBulletScript>();
+        GameObject newProjectile = Instantiate(gunData.projectilePrefab, gunMuzzle.transform.position, transform.rotation);
+        PistolBulletScript projectileScript = newProjectile.GetComponent<PistolBulletScript>();
+
         if (projectileScript != null)
         {
             projectileScript.InitOwner(player);

@@ -121,3 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileData: {fileID: 11400000, guid: ec1815b204ee31e4780bf185c125b0dc, type: 2}
+  player: {fileID: 0}
+  isCrit: 0

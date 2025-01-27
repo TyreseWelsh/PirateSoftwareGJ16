@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1143684742048656866}
   - component: {fileID: 824989637139092948}
   - component: {fileID: 5755014679991380088}
+  - component: {fileID: -7702444745890512849}
   - component: {fileID: 3672915699473056160}
   m_Layer: 0
   m_Name: HammerEnemy
@@ -244,7 +245,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09456e26678b2648b754513dc11686c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7702444745890512849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412864014253872192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186cc8511527daa48b8d5849bda3f9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MAX_HEALTH: 100
+  currentHealth: 0
+  canRegen: 0
+  regenDelayTime: 3
+  baseRegenAmount: 0.5
+  regenRate: 1
+  debugEnabled: 0
 --- !u!114 &3672915699473056160
 MonoBehaviour:
   m_ObjectHideFlags: 0

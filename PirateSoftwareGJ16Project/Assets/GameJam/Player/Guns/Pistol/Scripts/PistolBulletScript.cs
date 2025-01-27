@@ -8,6 +8,7 @@ public class PistolBulletScript : MonoBehaviour
 {
     [SerializeField] private ProjectileScriptableObject projectileData;
     public GameObject player;
+    private LevelUpComponent playerLevelUpComponent;
     private StatManagerComponent playerStatManager;
     private Transform bulletTransform;
 
@@ -48,8 +49,12 @@ public class PistolBulletScript : MonoBehaviour
     public void InitOwner(GameObject newPlayer)
     {
         player = newPlayer;
-        
-        playerStatManager = player.GetComponent<StatManagerComponent>();
+
+        if (player)
+        {
+            playerLevelUpComponent = player.GetComponent<LevelUpComponent>();
+            playerStatManager = player.GetComponent<StatManagerComponent>();
+        }
     }
 
     public float GetRange(bool modified)
@@ -77,7 +82,7 @@ public class PistolBulletScript : MonoBehaviour
         
         return projectileData.damage;
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<IDamageable>() != null)
@@ -87,9 +92,16 @@ public class PistolBulletScript : MonoBehaviour
             {
                 newDamage *= 2;
             }
-            
+
+            if (playerLevelUpComponent)
+            {
+                other.gameObject.GetComponent<HealthComponent>().onDeathDelegate += playerLevelUpComponent.AddToExperience;
+            }
             other.gameObject.GetComponent<IDamageable>().TakeDamage(newDamage, gameObject);
+            
             Destroy(gameObject);
         }
+        
+        Destroy(gameObject);
     }
 }

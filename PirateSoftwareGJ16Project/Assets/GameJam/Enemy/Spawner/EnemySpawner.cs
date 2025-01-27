@@ -150,7 +150,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (cursor >= randNum)
             {
-                Debug.Log("Chosen enemy = " + teststrings[i] + " with weight= " + weights[i]);
+                //Debug.Log("Chosen enemy = " + teststrings[i] + " with weight= " + weights[i]);
                 SpawnEnemy(enemyTypes[i]);
                 return;
             }

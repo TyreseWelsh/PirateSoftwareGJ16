@@ -18,8 +18,8 @@ public class HealthComponent : MonoBehaviour, IDamageable
     private Coroutine delayCoroutine;
     private Coroutine regenCoroutine;
 
-    
-    public IDamageable.OnDeath onDeathDelegate { get; set; }
+
+    public IDamageable.OnDeath onDeathDelegate;
     
     [Header("Debug")]
     [SerializeField] private bool debugEnabled = false;
@@ -152,7 +152,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Debug.Log("PLAYER DEAD");
+        Debug.Log(gameObject.name + " DEAD");
         onDeathDelegate?.Invoke();
         Destroy(gameObject);
     }

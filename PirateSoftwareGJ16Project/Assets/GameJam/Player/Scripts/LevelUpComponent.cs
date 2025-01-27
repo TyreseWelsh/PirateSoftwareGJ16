@@ -12,6 +12,13 @@ public class LevelUpComponent : MonoBehaviour
 
     [SerializeField] private GameObject levelUpUI;
 
+    // For game jam
+    public void AddToExperience()
+    {
+        Debug.Log("Increased player experience by 20");
+        IncreaseExperience(20);
+    }
+    
     public void IncreaseExperience(int increaseAmount)
     {
         experience += increaseAmount;
