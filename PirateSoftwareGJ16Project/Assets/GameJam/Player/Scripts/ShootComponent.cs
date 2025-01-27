@@ -235,17 +235,12 @@ public class ShootComponent : MonoBehaviour
             // Need to spawn new gun object in correct position, add the right GunData, and rotate it slightly so not all the same guns are facing in the same direction
             // For now add random values to position, to offset each gun
 
-            List<GameObject> currentGunList = new List<GameObject>(); 
-            if (!currentGuns.TryGetValue(armInterval, out currentGunList))
+            if (!currentGuns.ContainsKey(armInterval))
             {
                 currentGuns.Add(armInterval, new List<GameObject>());
             }
-
-            if (currentGunList.Count > 0)
-            {
-                currentGunList.Add(newGun);
-                Debug.Log("Added new gun to interval: " + armInterval);
-            }
+            currentGuns[armInterval].Add(newGun);
+            Debug.Log("Added new gun to interval: " + armInterval);
             
             armInterval += newGunData.shootInterval;
         }
