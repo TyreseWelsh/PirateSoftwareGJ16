@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -8,6 +9,18 @@ using Random = Unity.Mathematics.Random;
 
 public class UpgradeSpawner : MonoBehaviour
 {
+    public enum StatUpgradeTypes
+    {
+        Health,
+        HealthRegen,
+        Damage,
+        FireRate,
+        ReloadSpeed,
+        CritRate,
+        Range,
+        MoveSpeed
+    }
+    
     [SerializeField] private GameObject[] upgradeSpawns;
     [SerializeField]private int upgradeIndex = 0;
     [SerializeField] private int maxUpgrades;
@@ -28,11 +41,12 @@ public class UpgradeSpawner : MonoBehaviour
         {
             int randomSpawn = UnityEngine.Random.Range(0, upgradeSpawns.Length - 1);
             Debug.Log(randomSpawn);
+            
             StatSpawnPoint spawnPointScript = upgradeSpawns[randomSpawn].GetComponent<StatSpawnPoint>();
-            if (!spawnPointScript.upgradeSpawned)
+            if (!spawnPointScript.occupied)
             {
-                    Instantiate(upgradePrefab,upgradeSpawns[randomSpawn].transform.position, Quaternion.identity);
-                    spawnPointScript.upgradeSpawned = true;
+                    SpawnStatUpgrade(upgradeSpawns[randomSpawn].transform.position);
+                    spawnPointScript.occupied = true;
                     upgradeIndex++;
                     yield return StartCoroutine(SpawnUpgrades(curSpawnTimer));
             }
@@ -41,10 +55,19 @@ public class UpgradeSpawner : MonoBehaviour
                 yield return StartCoroutine(SpawnUpgrades(0f));
                 
             }
-            
         }
+    }
+
+    private void SpawnStatUpgrade(Vector3 spawnPosition)
+    {
+        int rangeMax = Enum.GetNames(typeof(StatUpgradeTypes)).Length;
+        int randNum = UnityEngine.Random.Range(0, rangeMax);
+        string statType = Enum.GetName(typeof(StatUpgradeTypes), randNum);
         
-
-
+        GameObject upgradeObject = Instantiate(upgradePrefab,spawnPosition, Quaternion.identity);
+        if (upgradeObject)
+        {
+            upgradeObject?.GetComponent<Upgrade>()?.SetStatType(statType);
+        }
     }
 }

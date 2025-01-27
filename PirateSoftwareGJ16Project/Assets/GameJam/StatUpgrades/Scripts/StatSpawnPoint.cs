@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatSpawnPoint : MonoBehaviour
 {
-    public bool upgradeSpawned = false;
+    public bool occupied = false;
     // Start is called before the first frame update
     void Start()
     {
