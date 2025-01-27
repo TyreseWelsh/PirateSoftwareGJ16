@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class LevelUpComponent : MonoBehaviour
 {
-    private int experience = 0;
-    private int level = 1;
-    private int experienceThreshold = 100;
+    public int experience = 0;
+
+    public int level = 1;
+    public int experienceThreshold = 100;
 
     [SerializeField] private GameObject levelUpUI;
 
