@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HUD : MonoBehaviour,  IUIUpdate
+public class HUD : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
@@ -14,6 +14,8 @@ public class HUD : MonoBehaviour,  IUIUpdate
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI ammoCount;
     [SerializeField] private GameObject upgradeBar;
+    [SerializeField] private Image[] upgradeIcons;
+    [SerializeField] private TextMeshProUGUI[] upgradeAmounts;
     
     private LevelUpComponent playerLevelUpScript;
     private HealthComponent playerHealthScript;
@@ -29,7 +31,7 @@ public class HUD : MonoBehaviour,  IUIUpdate
 
     }
 
-    [SerializeField] private List<StatObject> statObjectIcons;
+    [SerializeField] private List<SO_UpgradeBar> statObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,8 @@ public class HUD : MonoBehaviour,  IUIUpdate
         playerLevelUpScript = player.GetComponent<LevelUpComponent>();
         playerStatManagerScript = player.GetComponent<StatManagerComponent>();
         Debug.Log(playerHealthScript.GetMaxHealth(true));
+        playerStatManagerScript.onStatUpdate += updateUI;
+
     }
 
     // Update is called once per frame
@@ -46,7 +50,6 @@ public class HUD : MonoBehaviour,  IUIUpdate
         if (playerHealthScript)
         {
             healthBar.maxValue = playerHealthScript.GetMaxHealth(true);
-            Debug.Log("HEALTH MAX = " + healthBar.maxValue);
             healthBar.value =  playerHealthScript.currentHealth;
             healthText.text = playerHealthScript.currentHealth.ToString();
         }
@@ -65,9 +68,29 @@ public class HUD : MonoBehaviour,  IUIUpdate
         
     }
 
-    public void updateUI(string _name)
+    public void updateUI(string _name, int _amount)
     {
         
+        for (int i = 0; i < statObjects.Count; i++)
+        {
+            
+            if (statObjects[i]._name == _name)
+            {
+                
+                if (!upgradeIcons[i].GameObject().activeSelf)
+                {
+                    Debug.Log(i + "YOUR MUM YEAH");
+                    upgradeIcons[i].GameObject().SetActive(true);
+                    upgradeAmounts[i].GameObject().SetActive(true);
+                    
+                }
+                upgradeIcons[i].sprite = statObjects[i]._icon;
+                upgradeAmounts[i].text = _amount.ToString();
+
+                    
+                
+            }
+        }
     }
     
     

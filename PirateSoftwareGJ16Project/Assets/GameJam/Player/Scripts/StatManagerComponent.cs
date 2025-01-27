@@ -23,7 +23,8 @@ public class StatManagerComponent : MonoBehaviour
 
     [SerializeField] private List<StatObject> statObjects;
     public Dictionary<string, int> currentStats = new Dictionary<string, int>();
-
+    public delegate void OnStatUpdate(string _name, int Amount);
+    public OnStatUpdate onStatUpdate;
     
     // Start is called before the first frame update
     void Start()
@@ -83,7 +84,9 @@ public class StatManagerComponent : MonoBehaviour
     {
         Debug.Log("Applying Stat Increase to: " + _statName);
         currentStats[_statName]++;
-        BroadcastMessage("updateUI", _statName);
+        onStatUpdate?.Invoke(_statName, currentStats[_statName]);
+        Debug.Log(currentStats[_statName] + "YOUR DAD YEAH");
+
     }
     
     int GetStatAmount(string newStatName)
