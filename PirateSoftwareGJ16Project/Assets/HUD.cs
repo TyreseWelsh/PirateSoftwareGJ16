@@ -9,9 +9,9 @@ public class HUD : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
-    [SerializeField] private Slider HealthBar;
-    [SerializeField] private TextMeshProUGUI HealthText;
-    [SerializeField] private TextMeshProUGUI AmmoCount;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI ammoCount;
 
     private HealthComponent playerHealthScript;
 
@@ -21,21 +21,23 @@ public class HUD : MonoBehaviour
     {
         playerHealthScript = player.GetComponent<HealthComponent>();
         playerShootingScript = player.GetComponent<ShootComponent>();
-        Debug.Log(playerHealthScript.GetMaxHealth(false));
+        Debug.Log(playerHealthScript.GetMaxHealth(true));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (playerHealthScript != null)
+        if (playerHealthScript)
         {
-            HealthBar.value = playerHealthScript.currentHealth;
-            HealthText.text = playerHealthScript.currentHealth.ToString();
+            healthBar.maxValue = playerHealthScript.GetMaxHealth(true);
+            Debug.Log("HEALTH MAX = " + healthBar.maxValue);
+            healthBar.value =  playerHealthScript.currentHealth;
+            healthText.text = playerHealthScript.currentHealth.ToString();
         }
-        if (playerShootingScript != null)
+        
+        if (playerShootingScript)
         {
-            AmmoCount.text = playerShootingScript.currentAmmoCount + "/" + playerShootingScript.MAX_AMMO_COUNT;
+            ammoCount.text = playerShootingScript.currentAmmoCount + "/" + playerShootingScript.MAX_AMMO_COUNT;
         }
         
     }

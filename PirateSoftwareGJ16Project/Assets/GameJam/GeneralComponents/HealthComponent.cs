@@ -6,7 +6,6 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour, IDamageable
 {
     private StatManagerComponent statManager;
-    [SerializeField] private GameObject player;
     [Header("Health Stats")]
     [SerializeField] public int MAX_HEALTH = 120;
     [HideInInspector] public float currentHealth;
@@ -27,7 +26,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        statManager = player.GetComponent<StatManagerComponent>();
+        statManager = GetComponent<StatManagerComponent>();
     }
 
     private void Start()
@@ -111,22 +110,28 @@ public class HealthComponent : MonoBehaviour, IDamageable
     
     public int GetMaxHealth(bool modified)
     {
-        if (!modified)
+        if (statManager)
         {
-            return MAX_HEALTH;
+            if (modified)
+            {
+                return Mathf.CeilToInt(statManager.ApplyStatIncrease("MaxHealth", MAX_HEALTH));
+            }
         }
         
-        return Mathf.CeilToInt(statManager.ApplyStatIncrease("MaxHealth", MAX_HEALTH));
+        return MAX_HEALTH;
     }
 
     public float GetHealthRegen(bool modified)
     {
-        if (!modified)
+        if (statManager)
         {
-            return baseRegenAmount;
+            if (modified)
+            {
+                return statManager.ApplyStatIncrease("HealthRegen", baseRegenAmount);
+            }
         }
         
-        return statManager.ApplyStatIncrease("HealthRegen", baseRegenAmount);
+        return baseRegenAmount;
     }
     
     // IDamageable functions

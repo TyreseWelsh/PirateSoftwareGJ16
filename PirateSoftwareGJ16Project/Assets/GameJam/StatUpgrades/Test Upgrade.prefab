@@ -120,3 +120,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb5b964281c3d0408946e0726607fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPickupTime: 0
+  MAX_PICKUP_TIME: 4

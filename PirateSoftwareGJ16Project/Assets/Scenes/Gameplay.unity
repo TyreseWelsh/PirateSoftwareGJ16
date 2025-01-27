@@ -212,10 +212,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2761590569274824687, guid: fcaaf9c30f789a54c810fca5f7a4f5e2, type: 3}
-      propertyPath: m_Radius
-      value: 4.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8161122205206770933, guid: fcaaf9c30f789a54c810fca5f7a4f5e2, type: 3}
       propertyPath: m_Name
       value: Test Upgrade

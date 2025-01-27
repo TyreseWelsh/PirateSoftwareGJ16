@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
-    private string statType;
+    [SerializeField] private string statType;
     [SerializeField] private int currentPickupTime = 0;
     [SerializeField] private int MAX_PICKUP_TIME = 4;
     

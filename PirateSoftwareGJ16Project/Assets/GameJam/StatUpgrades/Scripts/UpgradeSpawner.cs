@@ -11,7 +11,7 @@ public class UpgradeSpawner : MonoBehaviour
 {
     public enum StatUpgradeTypes
     {
-        Health,
+        MaxHealth,
         HealthRegen,
         Damage,
         FireRate,

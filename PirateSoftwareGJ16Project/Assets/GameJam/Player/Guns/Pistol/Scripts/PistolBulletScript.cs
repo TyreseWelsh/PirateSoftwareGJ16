@@ -11,7 +11,7 @@ public class PistolBulletScript : MonoBehaviour
     private StatManagerComponent playerStatManager;
     private Transform bulletTransform;
 
-    private float range;
+    private float maxRange;
     private Vector3 startPosition;
     public bool isCrit = false;
     
@@ -19,7 +19,6 @@ public class PistolBulletScript : MonoBehaviour
     void Start()
     {
         bulletTransform = gameObject.GetComponent<Transform>();
-        range = projectileData.range;
         startPosition = transform.position;
     }
 
@@ -55,22 +54,28 @@ public class PistolBulletScript : MonoBehaviour
 
     public float GetRange(bool modified)
     {
-        if (!modified)
+        if (playerStatManager)
         {
-            return projectileData.range;
+            if (modified)
+            {
+                return playerStatManager.ApplyStatIncrease("Range", projectileData.range);
+            }
         }
         
-        return playerStatManager.ApplyStatIncrease("Range", projectileData.range);
+        return projectileData.range;
     }
     
     public int GetDamage(bool modified)
     {
-        if (!modified)
+        if (playerStatManager)
         {
-            return projectileData.damage;
+            if (modified)
+            {
+                return Mathf.CeilToInt(playerStatManager.ApplyStatIncrease("Damage", projectileData.damage));
+            }
         }
         
-        return Mathf.CeilToInt(playerStatManager.ApplyStatIncrease("Damage", projectileData.damage));
+        return projectileData.damage;
     }
 
     private void OnTriggerEnter(Collider other)

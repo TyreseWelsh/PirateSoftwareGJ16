@@ -39,8 +39,11 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         InitialiseEnemyTypes();
-        
-        spawnCoroutine = StartCoroutine(SpawnEnemyTimer());
+
+        if (isEnabled)
+        {
+            spawnCoroutine = StartCoroutine(SpawnEnemyTimer());
+        }
     }
 
     // Update is called once per frame

@@ -81,6 +81,7 @@ public class StatManagerComponent : MonoBehaviour
 
     public void IncrementStatAmount(string _statName)
     {
+        Debug.Log("Applying Stat Increase to: " + _statName);
         currentStats[_statName]++;
     }
     

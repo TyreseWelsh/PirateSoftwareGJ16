@@ -70,17 +70,23 @@ public class ShootComponent : MonoBehaviour
                 //Debug.Log("Ammo left: " + currentAmmoCount);
                 //Debug.Log("Shoot all " + shootCounter + " weapons!");
                 
+                // Check if crit
                 int critNum = Random.Range(1, 100);
                 bool isCrit = critNum < GetCritRate(true);
                 ShootBaseGun(isCrit);
-
-                // Similar to if (currentGuns.ContainsKey(shootCounter)) but we dont have to access the dictionary twice (one for the if statement, and another in the foreach loop)
-                List<GameObject> currentGunList;
-                currentGuns.TryGetValue(shootCounter, out currentGunList);
-                foreach (GameObject gun in currentGunList)
+                
+                if (currentGuns.ContainsKey(shootCounter))
                 {
-                    Debug.Log("Firing gun at interval: " + shootCounter);
-                    gun.GetComponent<GunScript>()?.Shoot(isCrit);
+                    List<GameObject> currentGunList = currentGuns[shootCounter];
+                    
+                    if (currentGunList.Count > 0)
+                    {
+                        foreach (GameObject gun in currentGunList)
+                        {
+                            Debug.Log("Firing gun at interval: " + shootCounter);
+                            gun.GetComponent<GunScript>()?.Shoot(isCrit);
+                        }
+                    }
                 }
 
                 shootCoroutine = StartCoroutine(UntilNextShot());
@@ -90,33 +96,41 @@ public class ShootComponent : MonoBehaviour
 
     public float GetFireRate(bool modified)
     {
-        if (!modified)
+        if (statManager)
         {
-            return fireRate;
+            if (modified)
+            {
+                return statManager.ApplyStatIncrease("FireRate", fireRate);
+            }
         }
         
-        return statManager.ApplyStatIncrease("FireRate", fireRate);
+        return fireRate;
     }
 
     public float GetReloadSpeed(bool modified)
     {
-        if (!modified)
+        if (statManager)
         {
-            return reloadSpeed;
+            if (modified)
+            {
+                return statManager.ApplyStatIncrease("ReloadSpeed", reloadSpeed);
+            }
         }
         
-        return statManager.ApplyStatIncrease("ReloadSpeed", reloadSpeed);
+        return reloadSpeed;
     }
 
     public int GetCritRate(bool modified)
     {
-        if (!modified)
+        if (statManager)
         {
-            // Base crit rate of 5
-            return baseCritRate;
+            if (modified)
+            {
+                return Mathf.CeilToInt(statManager.ApplyStatIncrease("CritRate", baseCritRate));
+            }
         }
         
-        return Mathf.CeilToInt(statManager.ApplyStatIncrease("CritRate", baseCritRate));
+        return baseCritRate;
     }
     
     public void Shoot(InputAction.CallbackContext context)
