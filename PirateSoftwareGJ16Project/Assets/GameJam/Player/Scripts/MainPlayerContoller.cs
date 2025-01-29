@@ -9,6 +9,7 @@ using UnityEngine.TextCore.Text;
 public class MainPlayerController : MonoBehaviour, IMobile
 {
     [SerializeField] private GameObject mesh;
+    [SerializeField] private GameObject AnimatedMesh;
     [SerializeField] private Transform cameraTransform;
     private StatManagerComponent statManager;
     
@@ -16,11 +17,11 @@ public class MainPlayerController : MonoBehaviour, IMobile
     [SerializeField] private float jumpHeight = 12f;
     private float gravity = 34f;
     [SerializeField] private float lookRotationSpeed = 40f;
-    private Vector3 moveDirection;
+    [HideInInspector] public Vector3 moveDirection;
 
     [SerializeField] GameObject spawner;
-    
-    CharacterController controller;
+
+    [HideInInspector] public CharacterController controller;
     PlayerInput playerInput;
     InputAction moveAction;
 

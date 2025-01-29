@@ -26,9 +26,9 @@ public class ShootComponent : MonoBehaviour
     [Header("BaseGun")] 
     [SerializeField] private GunScriptableObject baseGunData;
     [SerializeField] private GameObject baseMuzzle;
-    
-    private bool bHoldingTrigger;
-    private bool bCanShoot = true;
+
+    [HideInInspector] public bool bHoldingTrigger;
+    [HideInInspector] public bool bCanShoot = true;
     private Coroutine shootCoroutine;
     
     private Coroutine reloadCoroutine;
