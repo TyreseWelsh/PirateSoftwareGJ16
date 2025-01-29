@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
-public class MainPlayerController : MonoBehaviour
+public class MainPlayerController : MonoBehaviour, IMobile
 {
     [SerializeField] private GameObject mesh;
     [SerializeField] private Transform cameraTransform;
     private StatManagerComponent statManager;
     
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float lookRotationSpeed = 40f;
     private Vector3 moveDirection;
 
@@ -41,25 +43,41 @@ public class MainPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        moveDirection = moveDirection.x * cameraTransform.right.normalized + moveDirection.z * cameraTransform.forward.normalized;
-        moveDirection.y = Physics.gravity.y / 6;
-        controller.Move(GetMoveSpeed(true) * Time.deltaTime * moveDirection);
+        Move();
         
         // Rotate to camera forward
         Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
-
-    // TEMP
-    public void CalculateEnemySpawn(InputAction.CallbackContext context)
+    
+    public void Move()
     {
-        /*if (context.performed)
-        {
-            spawner.GetComponent<EnemySpawner>()?.CalculateWeighting();
-        }*/
+        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        moveDirection = moveDirection.x * cameraTransform.right.normalized + moveDirection.z * cameraTransform.forward.normalized;
+        moveDirection.y += Physics.gravity.y;
+        float currentSpeed = GetMoveSpeed(true);
+        moveDirection.x *= currentSpeed;
+        moveDirection.z *= currentSpeed;
+        controller.Move(Time.deltaTime * moveDirection);
+        Debug.Log(moveDirection);
     }
 
+    // TODO: HEEEEEEEELLLLLLLLLLLLPPPPPPPPP
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (controller.isGrounded)
+            {
+                /*Vector3 jumpVector = Vector3.zero;
+                jumpVector.y += Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y));
+                controller.Move(jumpVector);*/
+                Debug.Log("After jump= " + jumpHeight * -6 * (Physics.gravity.y));
+                moveDirection.y += jumpHeight * -6 * (Physics.gravity.y); 
+            }
+        }
+    }
+    
     public float GetMoveSpeed(bool modified)
     {
         if (!modified)
@@ -69,6 +87,9 @@ public class MainPlayerController : MonoBehaviour
         
         return statManager.ApplyStatIncrease("MoveSpeed", moveSpeed);
     }
-    
 
+    public void SetMoveSpeed(float _speed)
+    {
+        //
+    }
 }

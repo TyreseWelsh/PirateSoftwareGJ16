@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "1e8b9e94-3d6f-4481-9d30-84643a9388e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "c87cb96b-d90e-4d3e-8f4f-987ed0e9a8b3",
@@ -168,6 +177,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TempSpawnEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af2f0178-a25f-45bd-9f43-f1bdcb8d7e7c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gameplay",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -331,6 +331,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8ae50a53-93d8-40e3-b443-13df075497b5
     m_ActionName: 'Default/TempSpawnEnemy[/Keyboard/h]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7408906963356014316}
+        m_TargetAssemblyTypeName: MainPlayerController, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1e8b9e94-3d6f-4481-9d30-84643a9388e5
+    m_ActionName: 'Default/Jump[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gameplay
   m_DefaultActionMap: Default
@@ -351,6 +367,7 @@ MonoBehaviour:
   mesh: {fileID: 614550675317284019}
   cameraTransform: {fileID: 0}
   moveSpeed: 10
+  jumpHeight: 10
   lookRotationSpeed: 40
   spawner: {fileID: 1183257323735422601}
 --- !u!114 &1411008394961222122
