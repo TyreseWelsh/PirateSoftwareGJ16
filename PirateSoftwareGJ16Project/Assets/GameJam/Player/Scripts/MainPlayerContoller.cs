@@ -12,8 +12,9 @@ public class MainPlayerController : MonoBehaviour, IMobile
     [SerializeField] private Transform cameraTransform;
     private StatManagerComponent statManager;
     
-    [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private float jumpHeight = 12f;
+    private float gravity = 34f;
     [SerializeField] private float lookRotationSpeed = 40f;
     private Vector3 moveDirection;
 
@@ -49,15 +50,28 @@ public class MainPlayerController : MonoBehaviour, IMobile
         Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
     }
+
+    private bool jumping = false;
     
     public void Move()
     {
-        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        moveDirection = moveDirection.x * cameraTransform.right.normalized + moveDirection.z * cameraTransform.forward.normalized;
-        moveDirection.y += Physics.gravity.y;
-        float currentSpeed = GetMoveSpeed(true);
-        moveDirection.x *= currentSpeed;
-        moveDirection.z *= currentSpeed;
+        if (controller.isGrounded)
+        {
+            moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), moveDirection.y, Input.GetAxisRaw("Vertical"));
+
+            moveDirection = moveDirection.x * cameraTransform.right.normalized + moveDirection.z * cameraTransform.forward.normalized;
+            float currentSpeed = GetMoveSpeed(true);
+            moveDirection.x *= currentSpeed;
+            moveDirection.z *= currentSpeed;
+            if (jumping)
+            {
+                jumping = false;
+                moveDirection.y = jumpHeight;
+            }
+        }
+
+        moveDirection.y -= gravity * Time.deltaTime;
+
         controller.Move(Time.deltaTime * moveDirection);
         Debug.Log(moveDirection);
     }
@@ -69,11 +83,12 @@ public class MainPlayerController : MonoBehaviour, IMobile
         {
             if (controller.isGrounded)
             {
+                jumping = true;
                 /*Vector3 jumpVector = Vector3.zero;
                 jumpVector.y += Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y));
                 controller.Move(jumpVector);*/
-                Debug.Log("After jump= " + jumpHeight * -6 * (Physics.gravity.y));
-                moveDirection.y += jumpHeight * -6 * (Physics.gravity.y); 
+                //Debug.Log("After jump= " + jumpHeight * -6 * (Physics.gravity.y));
+                //moveDirection.y += jumpHeight * -24 * (Physics.gravity.y); 
             }
         }
     }
