@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TempSpawnEnemy",
+                    "name": "TempTesting",
                     "type": "Button",
                     "id": "8ae50a53-93d8-40e3-b443-13df075497b5",
                     "expectedControlType": "Button",
@@ -176,7 +176,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TempSpawnEnemy",
+                    "action": "TempTesting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

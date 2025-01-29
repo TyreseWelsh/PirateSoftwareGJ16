@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShotgunScript : GunScript
 {
-    private int numProjectiles = 10;
-    private float spreadAngle = 0.3f;
+    [SerializeField] private int numProjectiles = 10;
+    [SerializeField] private float spreadAngle = 0.3f;
     
     // Start is called before the first frame update
     void Start()

@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 40e792b6c1d2d0c4f97509a72408fe28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7408906963356014316}
         m_TargetAssemblyTypeName: MainPlayerController, Assembly-CSharp
-        m_MethodName: CalculateEnemySpawn
+        m_MethodName: DamageSelf
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -367,7 +367,7 @@ MonoBehaviour:
   mesh: {fileID: 614550675317284019}
   cameraTransform: {fileID: 0}
   moveSpeed: 10
-  jumpHeight: 10
+  jumpHeight: 12
   lookRotationSpeed: 40
   spawner: {fileID: 1183257323735422601}
 --- !u!114 &1411008394961222122
@@ -388,6 +388,8 @@ MonoBehaviour:
   regenDelayTime: 3
   baseRegenAmount: 0.5
   regenRate: 1
+  damageFlashMaterial: {fileID: 2100000, guid: ec8559e4e84124d4c822a12e5502b748, type: 2}
+  originalMaterial: {fileID: 2100000, guid: 40e792b6c1d2d0c4f97509a72408fe28, type: 2}
   debugEnabled: 0
 --- !u!114 &2346948083428135445
 MonoBehaviour:

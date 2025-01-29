@@ -107,4 +107,13 @@ public class MainPlayerController : MonoBehaviour, IMobile
     {
         //
     }
+
+    public void DamageSelf(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GetComponent<HealthComponent>()?.TakeDamage(10, gameObject);
+        }
+    }
+
 }

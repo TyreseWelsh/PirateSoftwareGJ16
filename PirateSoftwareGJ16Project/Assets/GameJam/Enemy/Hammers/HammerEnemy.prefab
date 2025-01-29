@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3988295914168052165}
   - component: {fileID: 514617995443621927}
   - component: {fileID: 6945954493998194631}
+  - component: {fileID: -4892089890229232004}
   - component: {fileID: 5755014679991380088}
   - component: {fileID: -7702444745890512849}
   - component: {fileID: 3672915699473056160}
@@ -107,6 +108,28 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &-4892089890229232004
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412864014253872192}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &5755014679991380088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09456e26678b2648b754513dc11686c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 2
+  player: {fileID: 0}
 --- !u!114 &-7702444745890512849
 MonoBehaviour:
   m_ObjectHideFlags: 0

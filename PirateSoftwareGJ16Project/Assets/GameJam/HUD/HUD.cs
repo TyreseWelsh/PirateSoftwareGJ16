@@ -113,7 +113,7 @@ public class HUD : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             currentLevelUpMenu = Instantiate(levelUpUI);
             LevelUpMenuScript levelUpMenuScript = currentLevelUpMenu.GetComponent<LevelUpMenuScript>();
-            levelUpMenuScript.Init(3, player);
+            levelUpMenuScript.Init(5, player);
             levelUpMenuScript.onDestroyed += DecrementNumLevelUps;
             return;
         }

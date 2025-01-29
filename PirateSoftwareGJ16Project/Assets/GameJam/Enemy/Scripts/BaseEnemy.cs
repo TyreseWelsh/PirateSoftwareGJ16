@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour
+public class BaseEnemy : MonoBehaviour, IMobile
 {
-
+    [SerializeField] private float attackRange = 2f;
     private NavMeshAgent agent;
 
-    [SerializeField]private GameObject player;
+    [SerializeField] private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +19,25 @@ public class BaseEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) > 2.0f)
+
+    }
+
+    public void Move()
+    {
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) > attackRange)
         {
             Debug.Log("Following");
             agent.destination = player.transform.position;
         }
+    }
+
+    public float GetMoveSpeed(bool modified)
+    {
+        return agent.speed;
+    }
+
+    public void SetMoveSpeed(float _speed)
+    {
+        agent.speed = _speed;
     }
 }

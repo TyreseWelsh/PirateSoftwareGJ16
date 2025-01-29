@@ -18,6 +18,11 @@ public class HealthComponent : MonoBehaviour, IDamageable
     private Coroutine delayCoroutine;
     private Coroutine regenCoroutine;
 
+    [Header("Damaged")] 
+    [SerializeField] private Material damageFlashMaterial;
+    [SerializeField] private Material originalMaterial;
+    private float damageFlashDuration = 0.1f;
+    [SerializeField] private MeshRenderer[] damageableMeshes;
 
     public IDamageable.OnDeath onDeathDelegate;
     
@@ -27,6 +32,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
     private void Awake()
     {
         statManager = GetComponent<StatManagerComponent>();
+        damageableMeshes = GetComponentsInChildren<MeshRenderer>();
     }
 
     private void Start()
@@ -138,9 +144,15 @@ public class HealthComponent : MonoBehaviour, IDamageable
     public void TakeDamage(int _damage, GameObject _source)
     {
         currentHealth -= _damage;
+        // Damage flash
+        foreach (MeshRenderer meshRenderer in damageableMeshes)
+        {
+            StartCoroutine(DamageFlash(meshRenderer, originalMaterial, damageFlashMaterial,damageFlashDuration));
+        }
 
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             Die();
         }
 
@@ -150,10 +162,21 @@ public class HealthComponent : MonoBehaviour, IDamageable
         }
     }
 
+    public IEnumerator DamageFlash(MeshRenderer meshRender, Material startingMaterial,
+        Material flashMaterial, float flashTime)
+    {
+        meshRender.material = flashMaterial;
+        yield return new WaitForSeconds(flashTime);
+        
+        meshRender.material = startingMaterial;
+    }
+
+    
     public void Die()
     {
         Debug.Log(gameObject.name + " DEAD");
         onDeathDelegate?.Invoke();
         Destroy(gameObject);
     }
+    
 }
