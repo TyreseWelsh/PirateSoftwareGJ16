@@ -15,7 +15,6 @@ MonoBehaviour:
   image: {fileID: 0}
   gunName: Shotgun
   description: Wide blast
-  shootInterval: 3
-  projectileDamage: 13
+  shootInterval: 1
   projectilePrefab: {fileID: 5831594215651449197, guid: 18ece60f0248645459892fc9bb9abf1a, type: 3}
   gunPrefab: {fileID: 1193461257150886797, guid: 3768de32f520ef7469bb058b47109337, type: 3}

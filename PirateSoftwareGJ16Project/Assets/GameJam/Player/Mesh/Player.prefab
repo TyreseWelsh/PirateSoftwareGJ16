@@ -156,7 +156,6 @@ GameObject:
   - component: {fileID: 8611606225704819120}
   - component: {fileID: 7408906963356014316}
   - component: {fileID: 1411008394961222122}
-  - component: {fileID: 3131283363963040204}
   - component: {fileID: 2346948083428135445}
   - component: {fileID: 5268629976393512031}
   - component: {fileID: 2365807780479649880}
@@ -373,25 +372,6 @@ MonoBehaviour:
   baseRegenAmount: 0.5
   regenRate: 1
   debugEnabled: 0
---- !u!114 &3131283363963040204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649987009910519791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186cc8511527daa48b8d5849bda3f9a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MAX_HEALTH: 100
-  currentHealth: 0
-  canRegen: 1
-  regenDelayTime: 3
-  baseRegenAmount: 0.5
-  regenRate: 1
-  debugEnabled: 0
 --- !u!114 &2346948083428135445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,7 +446,7 @@ MonoBehaviour:
   experience: 0
   level: 1
   experienceThreshold: 100
-  levelUpUI: {fileID: 2403918742282585185, guid: a0d010abfcce3764ab30d4195cbb0c80, type: 3}
+  hudScript: {fileID: 0}
 --- !u!1 &7912436271325205227
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,9 +7,8 @@ public class GunScript : MonoBehaviour
     [SerializeField] protected GunScriptableObject gunData;
     [SerializeField] public GameObject gunMuzzle;
 
-    public GameObject player;
-    public ShootComponent shootComponent;
-    public Transform playerCameraTransform;
+    private GameObject player;
+    [HideInInspector] public Transform playerCameraTransform;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +30,6 @@ public class GunScript : MonoBehaviour
     {
         player = newPlayer;
         
-        shootComponent = player.GetComponent<ShootComponent>();
     }
     
     /*protected void CalculateProjectileRotation()

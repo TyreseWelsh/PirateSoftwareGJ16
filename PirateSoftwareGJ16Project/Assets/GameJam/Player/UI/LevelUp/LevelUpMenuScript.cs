@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class LevelUpMenuScript : MonoBehaviour
     private GameObject player;
 
     private float gunOptionsDistance = 120f;
+
+    public delegate void OnDestroyed();
+    public OnDestroyed onDestroyed;
     
     // Start is called before the first frame update
     void Start()
@@ -50,5 +54,10 @@ public class LevelUpMenuScript : MonoBehaviour
     public void SetPlayer(GameObject newPlayer)
     {
         player = newPlayer;
+    }
+
+    private void OnDestroy()
+    {
+        onDestroyed?.Invoke();
     }
 }

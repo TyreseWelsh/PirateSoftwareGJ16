@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b487dd164dce646a0a7f98d2c90063, type: 3}
   m_Name: ShotgunBulletData
   m_EditorClassIdentifier: 
-  moveSpeed: 30
+  moveSpeed: 40
   damage: 13
   range: 12

@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 9040639124452611229}
   - component: {fileID: 5696060171952308572}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &424806496185879701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -87,12 +87,12 @@ GameObject:
   - component: {fileID: 1473658944594383695}
   - component: {fileID: 1140962589694181134}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5902179878660663394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -503,12 +503,12 @@ GameObject:
   - component: {fileID: 7059440624093662551}
   - component: {fileID: 1485075361341347448}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7409919692708898409
 RectTransform:
   m_ObjectHideFlags: 0
@@ -639,12 +639,12 @@ GameObject:
   - component: {fileID: 6054189247008267124}
   - component: {fileID: 5281368394542379620}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5928619557593741718
 RectTransform:
   m_ObjectHideFlags: 0
@@ -714,12 +714,12 @@ GameObject:
   - component: {fileID: 4064214512248562164}
   - component: {fileID: 5252919437302905351}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6654110702983232228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -825,12 +825,12 @@ GameObject:
   - component: {fileID: 7035632222220748998}
   - component: {fileID: 942770906172703844}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3989830258681129299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -900,12 +900,12 @@ GameObject:
   - component: {fileID: 2679864978444490396}
   - component: {fileID: 3795156402903976486}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &399956772840543012
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1072,12 +1072,12 @@ GameObject:
   - component: {fileID: 4092519332730698427}
   - component: {fileID: 8229183600345862844}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1216150337788750868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1507,12 +1507,12 @@ GameObject:
   - component: {fileID: 8504410140430507800}
   - component: {fileID: 6237198372806013704}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7636814172333533214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1643,12 +1643,12 @@ GameObject:
   - component: {fileID: 8534405757220868573}
   - component: {fileID: 6936256700238739554}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3088427658696651259
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1977,12 +1977,12 @@ GameObject:
   - component: {fileID: 2610096046440354711}
   - component: {fileID: 4694948114251914133}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8698864568784445257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2240,12 +2240,12 @@ GameObject:
   - component: {fileID: 1942903493166873398}
   - component: {fileID: 3433092826494023967}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8980613906072370721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2542,12 +2542,12 @@ GameObject:
   - component: {fileID: 3737819578368104616}
   - component: {fileID: 6355841292215406291}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3901441482188705705
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2678,12 +2678,12 @@ GameObject:
   - component: {fileID: 699288112417254457}
   - component: {fileID: 7082809973357781017}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8635842715715416895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2969,10 +2969,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   healthBar: {fileID: 2562049030556481664}
-  experienceBar: {fileID: 0}
+  experienceBar: {fileID: 1492736537746123046}
   healthText: {fileID: 6105344457026445928}
   ammoCount: {fileID: 8797316090892782472}
-  upgradeBar: {fileID: 0}
+  upgradeBar: {fileID: 5209499058187579152}
+  upgradeIcons:
+  - {fileID: 5696060171952308572}
+  - {fileID: 4694948114251914133}
+  - {fileID: 5252919437302905351}
+  - {fileID: 5281368394542379620}
+  - {fileID: 7082809973357781017}
+  - {fileID: 8900101621591430084}
+  - {fileID: 942770906172703844}
+  - {fileID: 1140962589694181134}
+  upgradeAmounts:
+  - {fileID: 3139375057729770842}
+  - {fileID: 6237198372806013704}
+  - {fileID: 3795156402903976486}
+  - {fileID: 6355841292215406291}
+  - {fileID: 3433092826494023967}
+  - {fileID: 6936256700238739554}
+  - {fileID: 1485075361341347448}
+  - {fileID: 8229183600345862844}
+  statObjects:
+  - {fileID: 11400000, guid: f7a0a1d91207aeb4e9246c4f99ee122e, type: 2}
+  - {fileID: 11400000, guid: fb4e170f734e15642a0c81999bdb4ea5, type: 2}
+  - {fileID: 11400000, guid: ba757b7a5c7d9cf4fadb4518c981a590, type: 2}
+  - {fileID: 11400000, guid: bb0a12507af0898498cf61394ebc00c7, type: 2}
+  - {fileID: 11400000, guid: 8d23d601ea11b6348bcf1a6d4a44b590, type: 2}
+  - {fileID: 11400000, guid: 94f7b37bb536bd645b0b6e5a16749b29, type: 2}
+  - {fileID: 11400000, guid: 6a456bf67c2ac1d41b1588993d6de98a, type: 2}
+  - {fileID: 11400000, guid: 5f12aed06795ea74193b81b3c2904cc3, type: 2}
+  levelUpUI: {fileID: 2403918742282585185, guid: a0d010abfcce3764ab30d4195cbb0c80, type: 3}
 --- !u!1 &7719457755788029928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2985,12 +3013,12 @@ GameObject:
   - component: {fileID: 2381222579410876663}
   - component: {fileID: 3139375057729770842}
   m_Layer: 5
-  m_Name: Counter
+  m_Name: Counter 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6666982695658497693
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3047,7 +3075,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 3724541951
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3560,12 +3588,12 @@ GameObject:
   - component: {fileID: 5650427485075466092}
   - component: {fileID: 8900101621591430084}
   m_Layer: 5
-  m_Name: UpgradeImage
+  m_Name: UpgradeImage 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1370686237329277232
 RectTransform:
   m_ObjectHideFlags: 0

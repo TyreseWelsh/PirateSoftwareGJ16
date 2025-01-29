@@ -11,7 +11,7 @@ public class LevelUpComponent : MonoBehaviour
     public int level = 1;
     public int experienceThreshold = 100;
 
-    [SerializeField] private GameObject levelUpUI;
+    [SerializeField] private HUD hudScript;
 
 
     private void Update()
@@ -51,9 +51,7 @@ public class LevelUpComponent : MonoBehaviour
     {
         level += levelIncreaseAmount;
         
-        Cursor.lockState = CursorLockMode.Confined;
-        GameObject newLevelUpMenu = Instantiate(levelUpUI);
-        newLevelUpMenu.GetComponent<LevelUpMenuScript>()?.Init(5, gameObject);
+        hudScript.AddLevelUpMenu();
     }
 
     public void IncreaseLevel(InputAction.CallbackContext context)

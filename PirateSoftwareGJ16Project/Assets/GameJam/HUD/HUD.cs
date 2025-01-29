@@ -28,10 +28,15 @@ public class HUD : MonoBehaviour
         public string statName;
         public int amount;
         public Sprite image;
-
     }
-
     [SerializeField] private List<SO_UpgradeBar> statObjects;
+
+    [SerializeField] private GameObject levelUpUI;
+    private GameObject currentLevelUpMenu;
+ 
+    // How many levelups we have in the backlog to show ui for
+    private int levelUpBacklog;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +44,7 @@ public class HUD : MonoBehaviour
         playerShootingScript = player.GetComponent<ShootComponent>();
         playerLevelUpScript = player.GetComponent<LevelUpComponent>();
         playerStatManagerScript = player.GetComponent<StatManagerComponent>();
-        Debug.Log(playerHealthScript.GetMaxHealth(true));
-        playerStatManagerScript.onStatUpdate += updateUI;
-
+        playerStatManagerScript.onStatUpdate += updateUpgradeUI;
     }
 
     // Update is called once per frame
@@ -68,7 +71,7 @@ public class HUD : MonoBehaviour
         
     }
 
-    public void updateUI(string _name, int _amount)
+    public void updateUpgradeUI(string _name, int _amount)
     {
         
         for (int i = 0; i < statObjects.Count; i++)
@@ -92,6 +95,45 @@ public class HUD : MonoBehaviour
             }
         }
     }
-    
-    
+
+    // Called when something (mainly LevelUpComponent) wants to add a level up menu to the screen
+    public void AddLevelUpMenu()
+    {
+        Debug.Log("Add to levelup backlog...");
+        levelUpBacklog++;
+
+        CheckLevelUpBacklog();
+    }
+
+    // Will create a new Level Up Menu if there is none already, if there is one present, do nothing (we still incremented the "backlog" so we can check after the current one is destroyed
+    private void CheckLevelUpBacklog()
+    {
+        if (!currentLevelUpMenu)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            currentLevelUpMenu = Instantiate(levelUpUI);
+            LevelUpMenuScript levelUpMenuScript = currentLevelUpMenu.GetComponent<LevelUpMenuScript>();
+            levelUpMenuScript.Init(3, player);
+            levelUpMenuScript.onDestroyed += DecrementNumLevelUps;
+            return;
+        }
+        
+        Debug.Log("Level up menu already present!");
+    }
+
+    private void DecrementNumLevelUps()
+    {
+        Debug.Log("Reducing level up backlog!");
+        levelUpBacklog--;
+        currentLevelUpMenu = null;
+
+        if (levelUpBacklog > 0)
+        {
+            CheckLevelUpBacklog();
+            return;
+        }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+    }
 }

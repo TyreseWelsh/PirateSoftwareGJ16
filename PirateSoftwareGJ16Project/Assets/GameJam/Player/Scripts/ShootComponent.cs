@@ -12,7 +12,7 @@ public class ShootComponent : MonoBehaviour
     [Header("Stats")]
     [SerializeField] public int MAX_AMMO_COUNT = 40;
     [HideInInspector]public int currentAmmoCount = 0;
-    [SerializeField] private int MAX_SHOOT_COUNT = 4;
+    [SerializeField] private int MAX_SHOOT_COUNT = 8;
     private int shootCounter = 0;
     [SerializeField] private float fireRate = 0.3f;
     [SerializeField] private float reloadSpeed = 1f;
@@ -27,15 +27,16 @@ public class ShootComponent : MonoBehaviour
     [SerializeField] private GunScriptableObject baseGunData;
     [SerializeField] private GameObject baseMuzzle;
     
-    private bool bHoldingTrigger = false;
+    private bool bHoldingTrigger;
     private bool bCanShoot = true;
     private Coroutine shootCoroutine;
     
     private Coroutine reloadCoroutine;
     
     // "Key" dictates at what multiple the weapons will be fired e.g. Shotguns may be added to "3" meaning that they will fire every 3rd shot 
-    private Dictionary<int, List<GameObject>> currentGuns = new Dictionary<int, List<GameObject>>();
-
+    private List<bool> nextGunOnRightSide = new List<bool>();
+    private Dictionary<int, List<GameObject>> leftSideGuns = new Dictionary<int, List<GameObject>>();
+    private Dictionary<int, List<GameObject>> rightSideGuns = new Dictionary<int, List<GameObject>>();
 
     private void Awake()
     {
@@ -46,6 +47,14 @@ public class ShootComponent : MonoBehaviour
     void Start()
     {
         currentAmmoCount = MAX_AMMO_COUNT;
+        
+        // At start, randomly decide where the first gun for each interval will be placed (we will then swap between right and left side for each gun on that interval)
+        for (int i = 0; i < MAX_SHOOT_COUNT; i++)
+        {
+            nextGunOnRightSide.Add(Random.value < 0.5f);
+            leftSideGuns.Add(i, new List<GameObject>());
+            rightSideGuns.Add(i, new List<GameObject>());
+        }
     }
 
     // Update is called once per frame
@@ -75,20 +84,27 @@ public class ShootComponent : MonoBehaviour
                 bool isCrit = critNum < GetCritRate(true);
                 ShootBaseGun(isCrit);
                 
-                if (currentGuns.ContainsKey(shootCounter))
+                // Two if statements to gather all the guns (from both sides of the player) we are going to shoot from during this frame
+                List<GameObject> currentGunList = new List<GameObject>();
+                if (leftSideGuns.ContainsKey(shootCounter))
                 {
-                    List<GameObject> currentGunList = currentGuns[shootCounter];
-                    
-                    if (currentGunList.Count > 0)
-                    {
-                        foreach (GameObject gun in currentGunList)
-                        {
-                            Debug.Log("Firing gun at interval: " + shootCounter);
-                            gun.GetComponent<GunScript>()?.Shoot(isCrit);
-                        }
-                    }
+                    currentGunList.AddRange(leftSideGuns[shootCounter]);
+                }
+                if (rightSideGuns.ContainsKey(shootCounter))
+                {
+                    currentGunList.AddRange(rightSideGuns[shootCounter]);
                 }
 
+                // Fire all guns at this "shoot interval" if any
+                if (currentGunList.Count > 0)
+                {
+                    foreach (GameObject gun in currentGunList)
+                    {
+                        // Debug.Log("Firing gun at interval: " + shootCounter);
+                        gun.GetComponent<GunScript>()?.Shoot(isCrit);
+                    }
+                }
+                
                 shootCoroutine = StartCoroutine(UntilNextShot());
             }
         }
@@ -166,18 +182,21 @@ public class ShootComponent : MonoBehaviour
     
     private Quaternion CalculateProjectileRotation()
     {
-        Vector3 targetPoint = cameraTransform.position + cameraTransform.forward * 30f;
+        Vector3 targetPoint = cameraTransform.position + cameraTransform.forward * 35f;
         Vector3 lookDirection = targetPoint - baseMuzzle.transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
         
         Quaternion projectileRotation = lookRotation;
 
         RaycastHit hit;
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward * 15, out hit))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward * 35, out hit))
         {
-            lookDirection = hit.point - baseMuzzle.transform.position;
-            Debug.DrawRay(baseMuzzle.transform.position, lookDirection * 15, Color.red, 1f);
-            projectileRotation = Quaternion.LookRotation(lookDirection.normalized);
+            if (Vector3.Distance(transform.position, hit.point) > 1.5f)
+            {
+                lookDirection = hit.point - baseMuzzle.transform.position;
+                Debug.DrawRay(baseMuzzle.transform.position, lookDirection * 35, Color.red, 1f);
+                projectileRotation = Quaternion.LookRotation(lookDirection.normalized);
+            }
         }
 
         return projectileRotation;
@@ -222,8 +241,36 @@ public class ShootComponent : MonoBehaviour
 
     public void AddGun(GunScriptableObject newGunData)
     {
-        int armInterval = newGunData.shootInterval;
+        int armInterval = newGunData.shootInterval - 1;
         
+        GameObject newGun = SpawnNewGun(newGunData);
+        
+        // Looping through lists of guns, adding the to each multiple of its gun interval so it fires 
+        // For example: a gun with shootInterval of 1, will be added to every single list of guns (as it should be fired every time) whereas a gun with shootInterval of 3 will be fired every 3 shots 
+        while (armInterval < MAX_SHOOT_COUNT)
+        {
+            // Need to spawn new gun object in correct position, add the right GunData, and rotate it slightly so not all the same guns are facing in the same direction
+            // For now add random values to position, to offset each gun
+            if (nextGunOnRightSide.Count > 0)
+            {
+                if (nextGunOnRightSide[newGunData.shootInterval])
+                {
+                    rightSideGuns[armInterval].Add(newGun);
+                }
+                else
+                {
+                    leftSideGuns[armInterval].Add(newGun);
+                }
+                
+            }
+
+            armInterval += newGunData.shootInterval;
+        }
+        nextGunOnRightSide[newGunData.shootInterval] = !nextGunOnRightSide[newGunData.shootInterval];
+    }
+
+    private GameObject SpawnNewGun(GunScriptableObject newGunData)
+    {
         GameObject newGun = Instantiate(newGunData.gunPrefab, mesh.transform);
         if(newGun)
         {
@@ -233,26 +280,44 @@ public class ShootComponent : MonoBehaviour
                 newGunScript.playerCameraTransform = cameraTransform;
                 newGunScript.InitOwner(gameObject);
             }
-            newGun.GetComponent<GunScript>().playerCameraTransform = cameraTransform;
-            newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + Random.Range(-2f, 2f), newGun.transform.localPosition.y + Random.Range(-0.75f, 0.75f), newGun.transform.localPosition.z + Random.Range(-1f, 1f));
+
+            Vector3 gunOffset = FindGunOffset(newGunData.shootInterval);
+            Debug.Log(gunOffset);
+            newGun.transform.localPosition = new Vector3(newGun.transform.localPosition.x + gunOffset.x, newGun.transform.localPosition.y + gunOffset.y, newGun.transform.localPosition.z + gunOffset.z);
         }
 
-        while (armInterval <= MAX_SHOOT_COUNT)
+        return newGun;
+    }
+
+    // TODO: Issue with gunIndex skipping values
+    private Vector3 FindGunOffset(int _shootInterval)
+    {
+        float xOffset;
+        if (nextGunOnRightSide.Count > 0)
         {
-            // Need to spawn new gun object in correct position, add the right GunData, and rotate it slightly so not all the same guns are facing in the same direction
-            // For now add random values to position, to offset each gun
+            float gunIndex = 0;
 
-            if (!currentGuns.ContainsKey(armInterval))
+            // Spawn gun on right side if true, left if false
+            if (nextGunOnRightSide[_shootInterval])
             {
-                currentGuns.Add(armInterval, new List<GameObject>());
+                gunIndex = rightSideGuns[_shootInterval].Count;
+                xOffset = 0.75f + (gunIndex / 3f);
             }
-            currentGuns[armInterval].Add(newGun);
-            Debug.Log("Added new gun to interval: " + armInterval);
+            else
+            {
+                gunIndex = leftSideGuns[_shootInterval].Count;
+                xOffset = -0.75f - (gunIndex / 3f);
+            }
             
-            armInterval += newGunData.shootInterval;
+            float yOffset = -0.2f + (_shootInterval / 2.3f) + Random.Range(-0.05f, 0.05f);
+            float zOffset = Random.Range(-0.6f, 0.6f);
+            
+            return new Vector3(xOffset, yOffset, zOffset);
         }
-        
-        Debug.Log("Armed with new " + newGunData.name+ "...");
+
+        Debug.LogError("nextGunOnRightSide not initialized!", gameObject);
+
+        return Vector3.zero;
     }
     
     // UREGENT NOTE: COMMENT OUT WHEN BUILDING

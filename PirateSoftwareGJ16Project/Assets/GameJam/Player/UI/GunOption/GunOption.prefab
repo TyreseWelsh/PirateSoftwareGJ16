@@ -362,7 +362,10 @@ MonoBehaviour:
   gunImage: {fileID: 4772557771681819782}
   gunName: {fileID: 306131612758887204}
   gunDescription: {fileID: 8877166915613418722}
-  GunData: {fileID: 11400000, guid: 7b569fddbf4e22e4f854d6674d3a195e, type: 2}
+  gunDataList:
+  - {fileID: 11400000, guid: 540a1bffdeb57154693f68cae830211c, type: 2}
+  - {fileID: 11400000, guid: 7b569fddbf4e22e4f854d6674d3a195e, type: 2}
+  - {fileID: 11400000, guid: 34cdf88c438f9c54d812d7c2fccd77b9, type: 2}
 --- !u!1 &6358417848741404607
 GameObject:
   m_ObjectHideFlags: 0

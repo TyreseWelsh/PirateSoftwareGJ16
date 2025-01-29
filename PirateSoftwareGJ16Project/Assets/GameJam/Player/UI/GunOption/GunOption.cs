@@ -10,29 +10,44 @@ public class GunOption : MonoBehaviour
     [SerializeField] Image gunImage;
     [SerializeField] TMPro.TextMeshProUGUI gunName;
     [SerializeField] TMPro.TextMeshProUGUI gunDescription;
-    
-    [Header("Data")]
-    public GunScriptableObject GunData;
+
+    [Header("Data")] 
+    public List<GunScriptableObject> gunDataList;
+    private GunScriptableObject gunData;
 
     private GameObject player;
     
     // Start is called before the first frame update
     void Start()
     {
-        gunImage.sprite = GunData.image;
-        gunName.text = GunData.gunName;
-        gunDescription.text = GunData.description;
+        InitOption();
     }
 
+    private void InitOption()
+    {
+        if (gunDataList.Count > 0)
+        {
+            int randGunDataIndex = Random.Range(0, gunDataList.Count);
+            gunData = gunDataList[randGunDataIndex];
+            if (gunData)
+            {
+                gunImage.sprite = gunData.image;
+                gunName.text = gunData.gunName;
+                gunDescription.text = gunData.description;
+            }
+        }
+    }
+    
     public void SelectOption()
     {
-        Debug.Log("Selected " + GunData.gunName + "!");
-        if (player)
+        if (player && gunData)
         {
-            player.GetComponent<ShootComponent>()?.AddGun(GunData);
-            Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
+            player.GetComponent<ShootComponent>()?.AddGun(gunData);
             Destroy(gameObject.transform.parent.gameObject);
+        }
+        else
+        {
+            Debug.LogError("Missing player or Gun Data", gameObject);
         }
     }
 
