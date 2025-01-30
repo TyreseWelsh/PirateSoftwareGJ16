@@ -22,7 +22,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
     [SerializeField] private Material damageFlashMaterial;
     [SerializeField] private Material originalMaterial;
     private float damageFlashDuration = 0.1f;
-    [SerializeField] private MeshRenderer[] damageableMeshes;
+    [SerializeField] private SkinnedMeshRenderer[] damageableMeshes;
 
     public IDamageable.OnDeath onDeathDelegate;
     
@@ -32,7 +32,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
     private void Awake()
     {
         statManager = GetComponent<StatManagerComponent>();
-        damageableMeshes = GetComponentsInChildren<MeshRenderer>();
+        damageableMeshes = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
     private void Start()
@@ -144,10 +144,11 @@ public class HealthComponent : MonoBehaviour, IDamageable
     public void TakeDamage(int _damage, GameObject _source)
     {
         currentHealth -= _damage;
+        
         // Damage flash
-        foreach (MeshRenderer meshRenderer in damageableMeshes)
+        foreach (SkinnedMeshRenderer SkinnedMeshRenderer in damageableMeshes)
         {
-            StartCoroutine(DamageFlash(meshRenderer, originalMaterial, damageFlashMaterial,damageFlashDuration));
+            StartCoroutine(DamageFlash(SkinnedMeshRenderer, originalMaterial, damageFlashMaterial,damageFlashDuration));
         }
 
         if (currentHealth <= 0)
@@ -162,7 +163,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
         }
     }
 
-    public IEnumerator DamageFlash(MeshRenderer meshRender, Material startingMaterial,
+    public IEnumerator DamageFlash(SkinnedMeshRenderer meshRender, Material startingMaterial,
         Material flashMaterial, float flashTime)
     {
         meshRender.material = flashMaterial;

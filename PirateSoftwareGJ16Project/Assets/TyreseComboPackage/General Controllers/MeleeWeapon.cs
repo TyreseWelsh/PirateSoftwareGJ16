@@ -24,17 +24,18 @@ public class MeleeWeapon : MonoBehaviour, IMeleeWeapon
     public void SetDamage(int newDamage)
     {
         damage = newDamage;
+        print("NEW DAMAGE = " + damage);
     }
     
     public void EnableCollider()
     {
-        print("Enable collider");
+        //print("Enable collider");
         weaponCollider.enabled = true;
     }
 
     public void DisableCollider()
     {
-        print("disable collider");
+        //print("disable collider");
 
         weaponCollider.enabled = false;
     }
@@ -49,12 +50,15 @@ public class MeleeWeapon : MonoBehaviour, IMeleeWeapon
     
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name + " hit!");
+        //print(other.gameObject.name + " hit!");
         IDamageable damageableInterface = other.gameObject.GetComponent<IDamageable>();
         if (damageableInterface != null)
         {
+            print("Hit contains interface");
             if (!damagedEnemies.Contains(other.gameObject))
             {
+                print("Hit not damaged yet");
+
                 damagedEnemies.Add(other.gameObject);
                 damageableInterface.TakeDamage(damage, gameObject);
             }

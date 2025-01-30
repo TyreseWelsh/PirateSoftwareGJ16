@@ -9,7 +9,7 @@ public class AttackComponent : MonoBehaviour
     
     protected CharacterDataTemplate characterData;
     [SerializeField] protected GameObject weaponPosition;
-    private GameObject characterWeapon;
+    [SerializeField] private GameObject characterWeapon;
     private List<GameObject> damagedTargets = new List<GameObject>();
     
     [SerializeField] private ComboDataTemplate comboData;
@@ -30,6 +30,7 @@ public class AttackComponent : MonoBehaviour
         //characterData = data;
         //comboData = characterData.basicComboData;
         comboData.InitAttackData();
+        characterWeapon?.GetComponentInChildren<MeleeWeapon>()?.SetDamage(comboData.comboAttacks[comboAttackCounter].damage);
         //SpawnWeapon();
     }
 

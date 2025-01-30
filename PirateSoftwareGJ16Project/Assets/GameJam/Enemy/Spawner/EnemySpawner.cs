@@ -189,7 +189,7 @@ public class EnemySpawner : MonoBehaviour
                         enemyObject.GetComponent<HealthComponent>().onDeathDelegate += CalculateWeighting;
                     }
                     
-                    Debug.Log("Spawned enemy!!!");
+                    //Debug.Log("Spawned enemy!!!");
                     currentEnemies++;
                 //}
                 /*else
