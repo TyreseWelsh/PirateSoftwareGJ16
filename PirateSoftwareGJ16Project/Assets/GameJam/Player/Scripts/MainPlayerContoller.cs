@@ -10,6 +10,7 @@ public class MainPlayerController : MonoBehaviour, IMobile
 {
     [SerializeField] private GameObject mesh;
     [SerializeField] private GameObject AnimatedMesh;
+    private Animator animator;
     [SerializeField] private Transform cameraTransform;
     private StatManagerComponent statManager;
     
@@ -30,6 +31,7 @@ public class MainPlayerController : MonoBehaviour, IMobile
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        animator = mesh.GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         statManager = GetComponent<StatManagerComponent>();
         
@@ -46,7 +48,7 @@ public class MainPlayerController : MonoBehaviour, IMobile
     void Update()
     {
         Move();
-        
+        animator.SetBool("isGrounded", controller.isGrounded);
         // Rotate to camera forward
         Quaternion newRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, newRotation, Time.deltaTime * lookRotationSpeed);
@@ -85,6 +87,7 @@ public class MainPlayerController : MonoBehaviour, IMobile
             if (controller.isGrounded)
             {
                 jumping = true;
+                animator.SetTrigger(name: "isJumping");
                 /*Vector3 jumpVector = Vector3.zero;
                 jumpVector.y += Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y));
                 controller.Move(jumpVector);*/
