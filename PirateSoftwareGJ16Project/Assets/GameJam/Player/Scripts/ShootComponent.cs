@@ -20,6 +20,7 @@ public class ShootComponent : MonoBehaviour
     
     [Header("")]
     [SerializeField] private GameObject mesh;
+    private Animator animator;
     [SerializeField] private Transform cameraTransform;
     private StatManagerComponent statManager;
     
@@ -41,6 +42,8 @@ public class ShootComponent : MonoBehaviour
     private void Awake()
     {
         statManager = GetComponent<StatManagerComponent>();
+        animator = mesh.GetComponent<Animator>();
+
     }
 
     // Start is called before the first frame update
@@ -104,7 +107,7 @@ public class ShootComponent : MonoBehaviour
                         gun.GetComponent<GunScript>()?.Shoot(isCrit);
                     }
                 }
-                
+                animator.SetTrigger(name: "isShooting");
                 shootCoroutine = StartCoroutine(UntilNextShot());
             }
         }
