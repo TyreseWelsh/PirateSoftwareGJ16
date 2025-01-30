@@ -74,10 +74,8 @@ public class MainPlayerController : MonoBehaviour, IMobile
         moveDirection.y -= gravity * Time.deltaTime;
 
         controller.Move(Time.deltaTime * moveDirection);
-        Debug.Log(moveDirection);
     }
 
-    // TODO: HEEEEEEEELLLLLLLLLLLLPPPPPPPPP
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -85,11 +83,6 @@ public class MainPlayerController : MonoBehaviour, IMobile
             if (controller.isGrounded)
             {
                 jumping = true;
-                /*Vector3 jumpVector = Vector3.zero;
-                jumpVector.y += Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y));
-                controller.Move(jumpVector);*/
-                //Debug.Log("After jump= " + jumpHeight * -6 * (Physics.gravity.y));
-                //moveDirection.y += jumpHeight * -24 * (Physics.gravity.y); 
             }
         }
     }

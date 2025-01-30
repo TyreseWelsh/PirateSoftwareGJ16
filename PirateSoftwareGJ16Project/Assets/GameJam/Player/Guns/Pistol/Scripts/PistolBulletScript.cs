@@ -8,23 +8,23 @@ public class PistolBulletScript : MonoBehaviour
 {
     [SerializeField] private ProjectileScriptableObject projectileData;
     public GameObject player;
-    private LevelUpComponent playerLevelUpComponent;
-    private StatManagerComponent playerStatManager;
-    private Transform bulletTransform;
+    protected LevelUpComponent playerLevelUpComponent;
+    protected StatManagerComponent playerStatManager;
+    protected Transform bulletTransform;
 
     private float maxRange;
     private Vector3 startPosition;
     public bool isCrit = false;
     
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         bulletTransform = gameObject.GetComponent<Transform>();
         startPosition = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         CheckRange();
         Move();

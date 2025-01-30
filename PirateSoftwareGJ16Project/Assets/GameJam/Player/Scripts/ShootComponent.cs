@@ -194,7 +194,7 @@ public class ShootComponent : MonoBehaviour
             if (Vector3.Distance(transform.position, hit.point) > 1.5f)
             {
                 lookDirection = hit.point - baseMuzzle.transform.position;
-                Debug.DrawRay(baseMuzzle.transform.position, lookDirection * 35, Color.red, 1f);
+                Debug.DrawRay(baseMuzzle.transform.position, lookDirection * 35, Color.red, 0.1f);
                 projectileRotation = Quaternion.LookRotation(lookDirection.normalized);
             }
         }

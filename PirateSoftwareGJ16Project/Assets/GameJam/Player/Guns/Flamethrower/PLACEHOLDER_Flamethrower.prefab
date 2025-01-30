@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7769609856414271741}
   - component: {fileID: 6793523998111450443}
   - component: {fileID: 6498921236399767669}
-  - component: {fileID: 5844113844864915959}
+  - component: {fileID: -2997616618081213183}
   m_Layer: 0
   m_Name: PLACEHOLDER_Flamethrower
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5844113844864915959
+--- !u!114 &-2997616618081213183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,14 +96,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1193461257150886797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c872e2e0dc68640817304c4663bd22, type: 3}
+  m_Script: {fileID: 11500000, guid: 7829848213f24e54f8e08d19f698315d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 8fc177065817f1b42a713fa526348ad6, type: 2}
   gunMuzzle: {fileID: 2831859428164130297}
   playerCameraTransform: {fileID: 0}
   numProjectiles: 13
-  spreadAngle: 0.4
+  spreadOffset: 0.2
 --- !u!1 &2831859428164130297
 GameObject:
   m_ObjectHideFlags: 0

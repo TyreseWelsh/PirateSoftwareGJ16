@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject playerTarget;
+    [SerializeField] private GameObject player;
 
     [SerializeField] private float spawnRange = 70;
     [SerializeField] private int maxEnemies = 150;
@@ -162,22 +163,34 @@ public class EnemySpawner : MonoBehaviour
         Vector3 endPoint1 = Random.insideUnitSphere * spawnRange;
         Vector2 spawnerPosition2D = new Vector2(transform.position.x, transform.position.z);
         Vector2 spawnPosition2D = new Vector2(endPoint1.x, endPoint1.z);
-        if (Vector2.Distance(spawnerPosition2D, spawnPosition2D) > spawnRange / 1.8f && endPoint1.y > transform.position.y + 2)
+        if (Vector2.Distance(spawnerPosition2D, spawnPosition2D) > spawnRange / 3f && endPoint1.y > transform.position.y + 2)
         {
-            Debug.DrawLine(transform.position, endPoint1, Color.yellow, 0.5f);
+            Debug.DrawLine(transform.position, endPoint1, Color.yellow, 1f);
 
             RaycastHit hit;
             if (Physics.Raycast(endPoint1, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
-                Vector3 spawnPoint = hit.point;
-                GameObject enemyObject = Instantiate(enemyType, spawnPoint, Quaternion.identity);
-                enemyObject.GetComponent<AIDestinationSetter>().target = playerTarget.transform;
-                if (enemyObject.GetComponent<HealthComponent>()?.onDeathDelegate != null)
+                NavMeshHit navMeshHit;
+                if (NavMesh.SamplePosition(hit.point, out navMeshHit, Mathf.Infinity, 0))
                 {
-                    enemyObject.GetComponent<HealthComponent>().onDeathDelegate += ReduceCurrentEnemyCount;
-                    enemyObject.GetComponent<HealthComponent>().onDeathDelegate += CalculateWeighting;
+                    Vector3 spawnPoint = navMeshHit.position;
+                    GameObject enemyObject = Instantiate(enemyType, spawnPoint, Quaternion.identity);
+                    enemyObject.GetComponent<BaseEnemy>()?.SetPlayer(player);
+                    enemyObject.GetComponent<AIDestinationSetter>().target = player.transform;
+                    if (enemyObject.GetComponent<HealthComponent>()?.onDeathDelegate != null)
+                    {
+                        enemyObject.GetComponent<HealthComponent>().onDeathDelegate += ReduceCurrentEnemyCount;
+                        enemyObject.GetComponent<HealthComponent>().onDeathDelegate += CalculateWeighting;
+                    }
+                    
+                    Debug.Log("Spawned enemy!!!");
+                    currentEnemies++;
                 }
-                currentEnemies++;
+            }
+            else
+            {
+                // Try and spawn an enemy again
+                SpawnEnemy(enemyType);
             }
         }
     }

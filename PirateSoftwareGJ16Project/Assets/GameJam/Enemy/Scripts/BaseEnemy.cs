@@ -40,4 +40,9 @@ public class BaseEnemy : MonoBehaviour, IMobile
     {
         agent.speed = _speed;
     }
+
+    public void SetPlayer(GameObject newPlayer)
+    {
+        player = newPlayer;
+    }
 }

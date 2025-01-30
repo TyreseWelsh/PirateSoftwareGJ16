@@ -107,7 +107,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &-4892089890229232004
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -162,6 +162,9 @@ MonoBehaviour:
   regenDelayTime: 3
   baseRegenAmount: 0.5
   regenRate: 1
+  damageFlashMaterial: {fileID: 2100000, guid: ec8559e4e84124d4c822a12e5502b748, type: 2}
+  originalMaterial: {fileID: 2100000, guid: 97e6077acb92c96498c3fc561f4561d9, type: 2}
+  damageableMeshes: []
   debugEnabled: 0
 --- !u!114 &3672915699473056160
 MonoBehaviour:
@@ -204,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 4984219621937019171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b3aeb2c7350515d49a198697990a0b56, type: 2}
+  - {fileID: 2100000, guid: 97e6077acb92c96498c3fc561f4561d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

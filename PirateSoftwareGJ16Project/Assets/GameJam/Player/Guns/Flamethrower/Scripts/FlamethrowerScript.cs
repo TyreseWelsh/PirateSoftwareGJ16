@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotgunScript : GunScript
+public class FlamethrowerScript : GunScript
 {
     [SerializeField] private int numProjectiles = 10;
-    [SerializeField] private float spreadOffset = 0.15f;
+    [SerializeField] private float spreadAngle = 0.3f;
     
     // Start is called before the first frame update
     void Start()
@@ -21,14 +21,17 @@ public class ShotgunScript : GunScript
 
     public override void Shoot(bool isCrit)
     {
-        for (int i = 0; i < numProjectiles; i++)
+        float currentShootAngle = (numProjectiles - 1) * -(spreadAngle / 2);
+        for (int i = 0; i < numProjectiles; ++i)
         {
-            Vector3 projectileDirection = transform.forward + new Vector3(Random.Range(-spreadOffset, spreadOffset), Random.Range(-spreadOffset, spreadOffset), Random.Range(-spreadOffset, spreadOffset));
-            Debug.DrawRay(gunMuzzle.transform.position, projectileDirection * 2, Color.green, 0.5f);
-            
-            gunMuzzle.transform.forward = projectileDirection;
+            gunMuzzle.transform.Rotate(Vector3.up, currentShootAngle);
+            Debug.DrawRay(gunMuzzle.transform.position, transform.forward * 2, Color.green, 50f);
             
             GameObject projectile = Instantiate(gunData.projectilePrefab, gunMuzzle.transform.position, gunMuzzle.transform.rotation);
+            
+            currentShootAngle += spreadAngle;
         }
     }
+    
+    
 }
