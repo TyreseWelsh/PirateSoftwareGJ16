@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AttackComponent : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class AttackComponent : MonoBehaviour
     private GameObject characterWeapon;
     private List<GameObject> damagedTargets = new List<GameObject>();
     
-    private ComboDataTemplate comboData;
+    [SerializeField] private ComboDataTemplate comboData;
     private int comboAttackCounter;
     [HideInInspector] public bool canAttack = true;
 
@@ -21,14 +22,15 @@ public class AttackComponent : MonoBehaviour
     public void Start()
     {
         ownerAnimator = GetComponent<Animator>();
+        InitData(characterData);
     }
     
     public void InitData(CharacterDataTemplate data)
     {
-        characterData = data;
-        comboData = characterData.basicComboData;
+        //characterData = data;
+        //comboData = characterData.basicComboData;
         comboData.InitAttackData();
-        SpawnWeapon();
+        //SpawnWeapon();
     }
 
     private void SpawnWeapon()
@@ -63,6 +65,7 @@ public class AttackComponent : MonoBehaviour
             {
                 StopResetComboTimer();
 
+                GetComponent<IMobile>()?.SetMoveSpeed(0);
                 canAttack = false;
                 ownerAnimator.SetFloat("AnimationSpeed", comboData.comboAttacks[comboAttackCounter].animationSpeed);
                 ownerAnimator.Play(comboData.comboAttacks[comboAttackCounter].animationName);
@@ -81,6 +84,11 @@ public class AttackComponent : MonoBehaviour
         if (comboAttackCounter < comboData.comboAttacks.Count)
         {
             canAttack = true;
+        }
+        else
+        {
+            // Temp: GunGame Enemy specific
+            GetComponent<IMobile>()?.SetMoveSpeed(GetComponent<BaseEnemy>().agent.speed);
         }
     }
     

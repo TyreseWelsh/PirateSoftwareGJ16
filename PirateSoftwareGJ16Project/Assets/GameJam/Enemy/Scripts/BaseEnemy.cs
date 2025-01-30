@@ -6,9 +6,11 @@ using UnityEngine.AI;
 public class BaseEnemy : MonoBehaviour, IMobile
 {
     [SerializeField] private float attackRange = 2f;
-    private NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
 
     [SerializeField] private GameObject player;
+
+    [SerializeField] private AttackComponent attackComponent;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +21,22 @@ public class BaseEnemy : MonoBehaviour, IMobile
     // Update is called once per frame
     void Update()
     {
-
+        Move();
     }
 
     public void Move()
     {
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) > attackRange)
+        if (Vector3.Distance(transform.position, player.transform.position) > attackRange)
         {
             Debug.Log("Following");
             agent.destination = player.transform.position;
+        }
+        else
+        {
+            if (attackComponent)
+            {
+                attackComponent.StartAttack();
+            }
         }
     }
 

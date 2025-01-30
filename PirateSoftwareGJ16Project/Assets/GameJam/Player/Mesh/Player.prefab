@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bab71ecc7e810f468c6d0d73fbd5e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 4649987009910519791}
+  player: {fileID: 0}
   spawnRange: 60
   maxEnemies: 150
   isEnabled: 1
@@ -157,10 +157,10 @@ GameObject:
   - component: {fileID: 2346948083428135445}
   - component: {fileID: 5268629976393512031}
   - component: {fileID: 2365807780479649880}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -202,13 +202,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1
+  m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.51, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8611606225704819120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffce855a4493ae24aa59809201a80266, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffce855a4493ae24aa59809201a80266, type: 3}
       propertyPath: m_LocalPosition.z

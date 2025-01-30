@@ -160,23 +160,29 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemyType)
     {
-        Vector3 endPoint1 = Random.insideUnitSphere * spawnRange;
+        Vector3 endPoint1 = player.transform.position + Random.insideUnitSphere * spawnRange;
+        endPoint1.y = player.transform.position.y + 5;
+        
+        //Debug.DrawLine(transform.position, endPoint1, Color.yellow, 100f);
+
         Vector2 spawnerPosition2D = new Vector2(transform.position.x, transform.position.z);
         Vector2 spawnPosition2D = new Vector2(endPoint1.x, endPoint1.z);
         if (Vector2.Distance(spawnerPosition2D, spawnPosition2D) > spawnRange / 3f && endPoint1.y > transform.position.y + 2)
         {
-            Debug.DrawLine(transform.position, endPoint1, Color.yellow, 1f);
+            Debug.DrawLine(transform.position, endPoint1, Color.yellow, 100f);
 
             RaycastHit hit;
             if (Physics.Raycast(endPoint1, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
+                Debug.DrawRay(endPoint1, transform.TransformDirection(Vector3.down) * 100f, Color.cyan, 100f);
                 NavMeshHit navMeshHit;
-                if (NavMesh.SamplePosition(hit.point, out navMeshHit, Mathf.Infinity, 0))
-                {
-                    Vector3 spawnPoint = navMeshHit.position;
+                /*if (NavMesh.SamplePosition(hit.point, out navMeshHit, Mathf.Infinity, 0))
+                {*/
+                    Debug.DrawLine(endPoint1, hit.point, Color.green, 100f);
+                    Vector3 spawnPoint = hit.point;
                     GameObject enemyObject = Instantiate(enemyType, spawnPoint, Quaternion.identity);
                     enemyObject.GetComponent<BaseEnemy>()?.SetPlayer(player);
-                    enemyObject.GetComponent<AIDestinationSetter>().target = player.transform;
+                    //enemyObject.GetComponent<AIDestinationSetter>().target = player.transform;
                     if (enemyObject.GetComponent<HealthComponent>()?.onDeathDelegate != null)
                     {
                         enemyObject.GetComponent<HealthComponent>().onDeathDelegate += ReduceCurrentEnemyCount;
@@ -185,12 +191,17 @@ public class EnemySpawner : MonoBehaviour
                     
                     Debug.Log("Spawned enemy!!!");
                     currentEnemies++;
-                }
+                //}
+                /*else
+                {
+
+                }*/
             }
             else
             {
-                // Try and spawn an enemy again
                 SpawnEnemy(enemyType);
+
+                // Try and spawn an enemy again
             }
         }
     }

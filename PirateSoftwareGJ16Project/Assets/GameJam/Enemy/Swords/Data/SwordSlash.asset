@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dddf4baf4625104d8125f740860b8f3, type: 3}
   m_Name: SwordSlash
   m_EditorClassIdentifier: 
-  animationName: 
+  animationName: SwordAttack
   damage: 15
   animationSpeed: 1
