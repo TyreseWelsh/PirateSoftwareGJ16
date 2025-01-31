@@ -11,7 +11,10 @@ public class GunScript : MonoBehaviour
 
     private GameObject player;
     [HideInInspector] public Transform playerCameraTransform;
-    
+
+    private AudioSource audioSource;
+    [SerializeField] List<AudioClip> gunSounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +34,7 @@ public class GunScript : MonoBehaviour
     public void InitOwner(GameObject newPlayer)
     {
         player = newPlayer;
-        
+        audioSource = player.GetComponent<AudioSource>();
     }
     
     /*protected void CalculateProjectileRotation()
@@ -75,4 +78,18 @@ public class GunScript : MonoBehaviour
             Destroy(muzzleFlashObject.gameObject, 0.1f);
         }
     }
+
+    protected void PlayAltGunSounds()
+    {
+        if (gunSounds.Count > 0)
+        {
+            int randSoundIndex = Random.Range(0, (gunSounds.Count - 1));
+            float pitch = Random.Range(0.9f, 1.10f);
+            float volume = Random.Range(0.85f, 1.0f);
+
+            audioSource.pitch = pitch;
+            audioSource.PlayOneShot(gunSounds[randSoundIndex], volume);
+        }
+    }
+
 }

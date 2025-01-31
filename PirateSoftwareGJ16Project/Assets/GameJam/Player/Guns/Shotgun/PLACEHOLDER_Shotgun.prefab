@@ -50,6 +50,11 @@ MonoBehaviour:
   gunMuzzle: {fileID: 2831859428164130297}
   muzzleFlashParticles: {fileID: 345873474535280960, guid: 347b4729117068b42884a3df77f94894, type: 3}
   playerCameraTransform: {fileID: 0}
+  gunSounds:
+  - {fileID: 8300000, guid: 38ca727878c230446a2e387adfbb79df, type: 3}
+  - {fileID: 8300000, guid: 97c01a293d728f542a75f2a6f1c91d84, type: 3}
+  - {fileID: 8300000, guid: a9a3b3c99f4314d41bd31092618dfbb1, type: 3}
+  - {fileID: 8300000, guid: 298ee2fcb7b14ab4cb7fac30b23ea9c8, type: 3}
   numProjectiles: 10
   spreadOffset: 0.08
 --- !u!1 &2704566178224176442
