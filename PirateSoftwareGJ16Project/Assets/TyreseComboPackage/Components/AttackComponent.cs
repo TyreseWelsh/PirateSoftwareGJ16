@@ -18,6 +18,9 @@ public class AttackComponent : MonoBehaviour
 
     private Coroutine nextAttackCoroutine;
     private Coroutine resetComboCoroutine;
+
+    [SerializeField] private AudioSource soundSource;
+    [SerializeField] private AudioClip attackClip;
     
     public void Start()
     {
@@ -134,5 +137,15 @@ public class AttackComponent : MonoBehaviour
     public GameObject GetCurrentWeapon()
     {
         return characterWeapon;
+    }
+
+    public void PlayerSounds()
+    {
+        int randSoundIndex = Random.Range(0, 3);
+        float pitch = Random.Range(0.9f, 1.10f);
+        float volume = Random.Range(0.65f, 0.85f);
+
+        soundSource.pitch = pitch;
+        soundSource.PlayOneShot(attackClip, volume);
     }
 }

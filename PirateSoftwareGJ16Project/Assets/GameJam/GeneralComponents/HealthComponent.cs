@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour, IDamageable
 {
@@ -25,6 +26,8 @@ public class HealthComponent : MonoBehaviour, IDamageable
     private float damageFlashDuration = 0.1f;
     [SerializeField] private SkinnedMeshRenderer[] damageableMeshes;
     [SerializeField] private ParticleSystem damagedParticleRef;
+    [SerializeField] private ParticleSystem deathParticleRef;
+    private ParticleSystem deathParticleObject;
     private ParticleSystem damagedParticleObject;
     
     public IDamageable.OnDeath onDeathDelegate;
@@ -180,10 +183,11 @@ public class HealthComponent : MonoBehaviour, IDamageable
     }
 
     
-    public void Die()
+    public virtual void Die()
     {
-        Debug.Log(gameObject.name + " DEAD");
         onDeathDelegate?.Invoke();
+        deathParticleObject = Instantiate(deathParticleRef, transform.position, Quaternion.identity);
+        Debug.Log(gameObject.name + " DEAD");
         Destroy(gameObject);
     }
     

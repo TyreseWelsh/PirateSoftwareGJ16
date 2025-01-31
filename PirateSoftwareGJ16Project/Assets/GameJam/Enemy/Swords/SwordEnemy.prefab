@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 7169139672791259849}
   - component: {fileID: 7170097496165248334}
   - component: {fileID: 2920712717375541190}
+  - component: {fileID: 7892174946248549015}
   m_Layer: 0
   m_Name: SwordEnemy
   m_TagString: Untagged
@@ -187,7 +188,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 100
@@ -237,6 +238,7 @@ MonoBehaviour:
   originalMaterial: {fileID: 2100000, guid: e025a4bc51ce2a743864d75ac82151d4, type: 2}
   damageableMeshes: []
   damagedParticleRef: {fileID: 7777227806220099747, guid: 6e47541edc689f1438ece127ca16463a, type: 3}
+  deathParticleRef: {fileID: 1947958980723290463, guid: 04368dc427a7dea41ab9d5e32b8aeeca, type: 3}
   debugEnabled: 0
 --- !u!114 &2920712717375541190
 MonoBehaviour:
@@ -250,11 +252,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010ee1e2974abaa4ba0395f9afce8079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectSource: {fileID: 0}
+  effectSource: {fileID: 5823950394241542365}
   meshRenderer: {fileID: 3266985621304927060}
   originalMaterial: {fileID: 2100000, guid: e025a4bc51ce2a743864d75ac82151d4, type: 2}
   frostMaterial: {fileID: 2100000, guid: 36d17ef0e115a9e4eb79bf2d44a31c5e, type: 2}
   burnParticles: {fileID: 4923973159084627907, guid: e016f52da5eab514aa799c6c4acb097d, type: 3}
+--- !u!82 &7892174946248549015
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212225973304462945}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &6634855407201179020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -337,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9f8497745cb6c164c98b388a897eced6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6485852682411267335, guid: 9f8497745cb6c164c98b388a897eced6, type: 3}
       propertyPath: m_IsActive
@@ -410,6 +509,8 @@ MonoBehaviour:
   characterWeapon: {fileID: 7442317601282908299}
   comboData: {fileID: 11400000, guid: fa48755680aafe242ab87ffe1e71e06b, type: 2}
   canAttack: 1
+  soundSource: {fileID: 7892174946248549015}
+  attackClip: {fileID: 8300000, guid: adae8cd4cce1e9e4280d05bf18d7eb93, type: 3}
 --- !u!4 &6600311859175436903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9f8497745cb6c164c98b388a897eced6, type: 3}

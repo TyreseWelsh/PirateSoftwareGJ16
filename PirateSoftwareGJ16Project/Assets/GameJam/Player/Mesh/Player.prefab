@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 7735432966658023567}
   - component: {fileID: 8611606225704819120}
   - component: {fileID: 7408906963356014316}
-  - component: {fileID: 1411008394961222122}
+  - component: {fileID: 1529446362929600235}
   - component: {fileID: 2346948083428135445}
   - component: {fileID: 5268629976393512031}
   - component: {fileID: 2365807780479649880}
@@ -288,7 +288,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   spawner: {fileID: 1183257323735422601}
   controller: {fileID: 0}
---- !u!114 &1411008394961222122
+--- !u!114 &1529446362929600235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4649987009910519791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186cc8511527daa48b8d5849bda3f9a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 175a9192f6ea02642b9199bfcdb84533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 100
@@ -309,6 +309,8 @@ MonoBehaviour:
   damageFlashMaterial: {fileID: 2100000, guid: ec8559e4e84124d4c822a12e5502b748, type: 2}
   originalMaterial: {fileID: 2100000, guid: 40e792b6c1d2d0c4f97509a72408fe28, type: 2}
   damageableMeshes: []
+  damagedParticleRef: {fileID: 9061087401430474310, guid: 5eedc53324cdf7b42beb86eb6db06820, type: 3}
+  deathParticleRef: {fileID: 1947958980723290463, guid: 04368dc427a7dea41ab9d5e32b8aeeca, type: 3}
   debugEnabled: 0
 --- !u!114 &2346948083428135445
 MonoBehaviour:

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class StatusEffectComponent : MonoBehaviour
 {
@@ -36,11 +37,17 @@ public class StatusEffectComponent : MonoBehaviour
     private Coroutine burnCoroutine;
     private float MAX_BURN_DURATION = 3f;
     private float currentBurnDuration = 0f;
-
+    
+    
     private void Awake()
     {
         movementInterface = GetComponent<IMobile>();
         damageableInterface = GetComponentInParent<IDamageable>();
+        if (GetComponent<HealthComponent>())
+        {
+
+
+        }
     }
 
     public void ApplyStatusEffect(StatusEffectType effectType, GameObject source)
@@ -98,6 +105,9 @@ public class StatusEffectComponent : MonoBehaviour
         if (burnCoroutine == null)
         {
             burnParticlesObject = Instantiate(burnParticles, transform.position, Quaternion.identity);
+            burnParticlesObject.transform.parent = transform;
+            Vector3 randomSize = new Vector3(Random.Range(2.0f,3.0f), Random.Range(2.0f,3.0f), Random.Range(2.0f,3.0f));
+            burnParticlesObject.transform.localScale = randomSize;
             burnCoroutine = StartCoroutine(BurnTimer(source));
         }
     }
@@ -116,9 +126,10 @@ public class StatusEffectComponent : MonoBehaviour
         RemoveBurn();
     }
 
-    private void RemoveBurn()
+    public void RemoveBurn()
     {
         burnCoroutine = null;
+        burnParticlesObject.Stop();
         Destroy(burnParticlesObject);
         currentStatusEffects.Remove(StatusEffectType.Burn);
     }

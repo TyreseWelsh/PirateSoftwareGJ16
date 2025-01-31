@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1296362372262972280}
   - component: {fileID: 2761590569274824687}
   - component: {fileID: 1552347047114045750}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UpgradeObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -250,6 +250,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1296362372262972280}
     m_Modifications:
     - target: {fileID: 1891777328234031055, guid: 466239ae95e12dd498cf46b49460b23b, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891777328234031055, guid: 466239ae95e12dd498cf46b49460b23b, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -309,9 +313,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7587558464781100195, guid: 466239ae95e12dd498cf46b49460b23b, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7943988225692024200, guid: 466239ae95e12dd498cf46b49460b23b, type: 3}
       propertyPath: m_Name
       value: Beacon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943988225692024200, guid: 466239ae95e12dd498cf46b49460b23b, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -460,7 +472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec3e7c8e54eddc4f9b5a51ef2ac49ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thirdPersonCam: {fileID: 0}
 --- !u!114 &7384643447211148868 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3724422069130214917, guid: 507a8bd951e5e83448cb391e81704244, type: 3}
