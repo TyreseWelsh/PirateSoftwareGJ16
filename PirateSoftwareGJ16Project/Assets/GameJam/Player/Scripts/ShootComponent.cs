@@ -21,6 +21,7 @@ public class ShootComponent : MonoBehaviour
     [Header("")]
     [SerializeField] private GameObject mesh;
     private Animator animator;
+    private AudioSource audioSource;
     [SerializeField] private Transform cameraTransform;
     private StatManagerComponent statManager;
     
@@ -31,8 +32,11 @@ public class ShootComponent : MonoBehaviour
     [HideInInspector] public bool bHoldingTrigger;
     [HideInInspector] public bool bCanShoot = true;
     private Coroutine shootCoroutine;
+    [SerializeField] List<AudioClip> shootSounds;
     
     private Coroutine reloadCoroutine;
+    [SerializeField] List<AudioClip> reloadSounds;
+    
     
     // "Key" dictates at what multiple the weapons will be fired e.g. Shotguns may be added to "3" meaning that they will fire every 3rd shot 
     private List<bool> nextGunOnRightSide = new List<bool>();
@@ -43,6 +47,7 @@ public class ShootComponent : MonoBehaviour
     {
         statManager = GetComponent<StatManagerComponent>();
         animator = mesh.GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -174,6 +179,7 @@ public class ShootComponent : MonoBehaviour
     {
         GameObject baseProjectile = Instantiate(baseGunData.projectilePrefab, baseMuzzle.transform.position, CalculateProjectileRotation());
         PistolBulletScript projectileScript = baseProjectile.GetComponent<PistolBulletScript>();
+        PlayShootSound();
 
         if (projectileScript != null)
         {
@@ -181,7 +187,18 @@ public class ShootComponent : MonoBehaviour
             projectileScript.isCrit = isCrit;
         }
     }
-    
+
+    private void PlayShootSound()
+    {
+        int randSoundIndex = Random.Range(0, 3);
+        float pitch = Random.Range(0.9f, 1.10f);
+        float volume = Random.Range(0.85f, 1.0f);
+        AudioClip shootSound = shootSounds[randSoundIndex];
+
+        audioSource.pitch = pitch;
+        audioSource.PlayOneShot(shootSound, volume);
+    }
+
     private Quaternion CalculateProjectileRotation()
     {
         Vector3 targetPoint = cameraTransform.position + cameraTransform.forward * 35f;
@@ -220,7 +237,7 @@ public class ShootComponent : MonoBehaviour
             ClearLog();
             // Will start reload timer/coroutine which plays animations, sounds, resets ammo count to MAX_AMMO
             Debug.Log("Start reload!");
-            
+            PlayReloadSound();
             // Make sure player cant attempt to shoot during reload
             bCanShoot = false;
             StopCoroutine(shootCoroutine);
@@ -228,6 +245,17 @@ public class ShootComponent : MonoBehaviour
             
             reloadCoroutine = StartCoroutine(Reloading());
         }
+    }
+
+    private void PlayReloadSound()
+    {
+        int randSoundIndex = Random.Range(0, 3);
+        float pitch = Random.Range(0.9f, 1.10f);
+        float volume = Random.Range(0.85f, 1.0f);
+        AudioClip reloadSound = reloadSounds[randSoundIndex];
+
+        audioSource.pitch = pitch;
+        audioSource.PlayOneShot(reloadSound, volume);
     }
     
     IEnumerator Reloading()

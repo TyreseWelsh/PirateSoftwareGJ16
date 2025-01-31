@@ -26,7 +26,8 @@ public class MainPlayerController : MonoBehaviour, IMobile
     PlayerInput playerInput;
     InputAction moveAction;
 
-    private Vector2 lastMousePosition;    
+    private Vector2 lastMousePosition;
+
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class MainPlayerController : MonoBehaviour, IMobile
         animator = mesh.GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         statManager = GetComponent<StatManagerComponent>();
+        
         
         // Make sure to unlock Cursor when attempting to use UI
         Cursor.lockState = CursorLockMode.Locked;
@@ -113,4 +115,5 @@ public class MainPlayerController : MonoBehaviour, IMobile
         }
     }
 
+    
 }
