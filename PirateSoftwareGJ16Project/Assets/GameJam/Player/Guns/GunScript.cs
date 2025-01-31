@@ -85,7 +85,7 @@ public class GunScript : MonoBehaviour
         {
             int randSoundIndex = Random.Range(0, (gunSounds.Count - 1));
             float pitch = Random.Range(0.9f, 1.10f);
-            float volume = Random.Range(0.85f, 1.0f);
+            float volume = Random.Range(0.1f, 0.3f);
 
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(gunSounds[randSoundIndex], volume);

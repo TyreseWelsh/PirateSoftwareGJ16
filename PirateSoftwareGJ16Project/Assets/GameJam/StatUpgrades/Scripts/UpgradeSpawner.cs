@@ -69,6 +69,6 @@ public class UpgradeSpawner : MonoBehaviour
         GameObject upgradeObject = Instantiate(upgradePrefab,spawnPosition, Quaternion.identity);
         
         upgradeObject?.GetComponent<Upgrade>()?.SetStatType(statType);
-        upgradeObject?.GetComponent<Upgrade>()?.SetPlayer(player);
+        //upgradeObject?.GetComponent<Upgrade>()?.SetPlayer(player);
     }
 }

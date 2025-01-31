@@ -208,7 +208,7 @@ public class ShootComponent : MonoBehaviour
         {
             int randSoundIndex = Random.Range(0, 3);
             float pitch = Random.Range(0.9f, 1.10f);
-            float volume = Random.Range(0.85f, 1.0f);
+            float volume = Random.Range(0.65f, 0.85f);
             AudioClip shootSound = shootSounds[randSoundIndex];
 
             audioSource.pitch = pitch;

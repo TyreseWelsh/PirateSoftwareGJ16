@@ -5,16 +5,30 @@ using UnityEngine;
 
 public class AlwaysPointToPlayer : MonoBehaviour
 {
-    public Camera thirdPersonCam;
+    private GameObject player;
 
     private void Start()
     {
-        thirdPersonCam = Camera.main;
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.LookAt(transform.position + thirdPersonCam.transform.rotation * Vector3.forward, thirdPersonCam.transform.rotation * Vector3.up);
+        {
+            if (player)
+            {
+                // Rotate to look in player direction
+                Vector3 playerPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+                transform.LookAt(playerPosition);
+            }
+        }
     }
+
+    //public void SetPlayer(GameObject newPlayer)
+    //{
+    //    player = newPlayer;
+    //}
+
+
 }

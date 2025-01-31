@@ -18,7 +18,7 @@ public class PlayerSounds : MonoBehaviour
     {
         int randSoundIndex = Random.Range(0, 1);
         float pitch = Random.Range(0.9f, 1.10f);
-        float volume = Random.Range(0.65f, 0.85f);
+        float volume = Random.Range(0.2f, 0.4f);
         AudioClip footstepSound = footstepSounds[randSoundIndex];
 
         audioSource.pitch = pitch;
@@ -29,7 +29,7 @@ public class PlayerSounds : MonoBehaviour
     {
         int randSoundIndex = Random.Range(0, 1);
         float pitch = Random.Range(0.9f, 1.10f);
-        float volume = Random.Range(0.60f, 0.65f);
+        float volume = Random.Range(0.50f, 0.60f);
       
 
         audioSource.pitch = pitch;
@@ -40,7 +40,7 @@ public class PlayerSounds : MonoBehaviour
     {
         int randSoundIndex = Random.Range(0, 1);
         float pitch = Random.Range(0.9f, 1.10f);
-        float volume = Random.Range(0.7f, 0.80f);
+        float volume = Random.Range(0.6f, 0.7f);
 
 
         audioSource.pitch = pitch;

@@ -32,7 +32,7 @@ public class Upgrade : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (player)
         {
@@ -45,7 +45,7 @@ public class Upgrade : MonoBehaviour
     public void SetPlayer(GameObject newPlayer)
     {
         player = newPlayer;
-    }
+    }*/
     
     public void SetStatType(string newType)
     {
