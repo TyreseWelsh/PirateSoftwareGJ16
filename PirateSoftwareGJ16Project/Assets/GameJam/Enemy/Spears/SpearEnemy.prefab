@@ -167,6 +167,7 @@ MonoBehaviour:
   damageFlashMaterial: {fileID: 2100000, guid: ec8559e4e84124d4c822a12e5502b748, type: 2}
   originalMaterial: {fileID: 2100000, guid: e025a4bc51ce2a743864d75ac82151d4, type: 2}
   damageableMeshes: []
+  damagedParticleRef: {fileID: 7777227806220099747, guid: 6e47541edc689f1438ece127ca16463a, type: 3}
   debugEnabled: 0
 --- !u!114 &5188985122569730363
 MonoBehaviour:

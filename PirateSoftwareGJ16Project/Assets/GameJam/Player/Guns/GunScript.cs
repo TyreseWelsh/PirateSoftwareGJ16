@@ -70,8 +70,9 @@ public class GunScript : MonoBehaviour
     {
         if (gunMuzzle && muzzleFlashParticles)
         {
-            muzzleFlashObject = Instantiate(muzzleFlashParticles, gunMuzzle.transform);
+            muzzleFlashObject = Instantiate(muzzleFlashParticles, gunMuzzle.transform.position, transform.rotation);
             muzzleFlashObject.Play();
+            Destroy(muzzleFlashObject.gameObject, 0.1f);
         }
     }
 }

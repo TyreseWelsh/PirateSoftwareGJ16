@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class HealthComponent : MonoBehaviour, IDamageable
 {
@@ -23,7 +24,9 @@ public class HealthComponent : MonoBehaviour, IDamageable
     [SerializeField] private Material originalMaterial;
     private float damageFlashDuration = 0.1f;
     [SerializeField] private SkinnedMeshRenderer[] damageableMeshes;
-
+    [SerializeField] private ParticleSystem damagedParticleRef;
+    private ParticleSystem damagedParticleObject;
+    
     public IDamageable.OnDeath onDeathDelegate;
     
     [Header("Debug")]
@@ -144,6 +147,10 @@ public class HealthComponent : MonoBehaviour, IDamageable
     public void TakeDamage(int _damage, GameObject _source)
     {
         currentHealth -= _damage;
+        
+        Quaternion damageParticleRotation = Quaternion.LookRotation(transform.position + Random.insideUnitSphere);
+        damagedParticleObject = Instantiate(damagedParticleRef, transform.position, damageParticleRotation);
+        Destroy(damagedParticleObject.gameObject, 0.25f);
         
         // Damage flash
         foreach (SkinnedMeshRenderer SkinnedMeshRenderer in damageableMeshes)

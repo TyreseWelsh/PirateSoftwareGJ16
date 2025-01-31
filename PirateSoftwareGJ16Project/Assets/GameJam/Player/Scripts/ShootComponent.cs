@@ -125,8 +125,9 @@ public class ShootComponent : MonoBehaviour
     {
         if (baseMuzzle)
         {
-            muzzleFlashObject = Instantiate(muzzleFlashParticles, baseMuzzle.transform);
+            muzzleFlashObject = Instantiate(muzzleFlashParticles, baseMuzzle.transform.position, CalculateProjectileRotation());
             muzzleFlashObject.Play();
+            Destroy(muzzleFlashObject.gameObject, 0.1f);
         }
     }
 
