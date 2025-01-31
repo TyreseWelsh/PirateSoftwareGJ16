@@ -23,7 +23,7 @@ public class AnimationScriptController : MonoBehaviour
     void Update()
     {
         bool isRunning = animator.GetBool(isRunningHash);
-        
+
 
         // if player is moving
         if (!isRunning && PlayerScript.moveDirection.magnitude > 1 && PlayerScript.controller.isGrounded)
@@ -33,7 +33,7 @@ public class AnimationScriptController : MonoBehaviour
         }
 
         // if player is not moving
-        if (isRunning && PlayerScript.moveDirection.magnitude < 1 && !PlayerScript.controller.isGrounded)
+        if (isRunning && PlayerScript.moveDirection.magnitude < 1 && PlayerScript.controller.isGrounded)
         {
             // then set the isRunning boolean to be false
             animator.SetBool(isRunningHash, false);
