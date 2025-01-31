@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2371150322988292646}
   - component: {fileID: 2857243833920481112}
   - component: {fileID: 949286948646069466}
-  - component: {fileID: -105097079873846474}
+  - component: {fileID: -3970474811153213798}
   m_Layer: 0
   m_Name: PLACEHOLDER_Sniper_Bullet
   m_TagString: Untagged
@@ -108,7 +108,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.22
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-105097079873846474
+--- !u!114 &-3970474811153213798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,9 +117,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5831594215651449197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8075c20c5a1c92643a233989ff6294a1, type: 3}
+  m_Script: {fileID: 11500000, guid: db65bc420b43bd741b3d1514fa1c2854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: ec1815b204ee31e4780bf185c125b0dc, type: 2}
+  projectileData: {fileID: 11400000, guid: cea31eaf61a2822439518ea95a19ea6f, type: 2}
   player: {fileID: 0}
   isCrit: 0

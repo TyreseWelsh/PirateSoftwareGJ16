@@ -25,13 +25,15 @@ public class UpgradeSpawner : MonoBehaviour
     [SerializeField]private int upgradeIndex = 0;
     [SerializeField] private int maxUpgrades;
     [SerializeField] private float spawnTimer;
-    
-
     [SerializeField] private GameObject upgradePrefab;
+
+    private GameObject player;
+    
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnUpgrades(spawnTimer));
+        player = GameObject.FindWithTag("Player");
     }
 
     private IEnumerator SpawnUpgrades(float curSpawnTimer)
@@ -65,9 +67,8 @@ public class UpgradeSpawner : MonoBehaviour
         string statType = Enum.GetName(typeof(StatUpgradeTypes), randNum);
         
         GameObject upgradeObject = Instantiate(upgradePrefab,spawnPosition, Quaternion.identity);
-        if (upgradeObject)
-        {
-            upgradeObject?.GetComponent<Upgrade>()?.SetStatType(statType);
-        }
+        
+        upgradeObject?.GetComponent<Upgrade>()?.SetStatType(statType);
+        upgradeObject?.GetComponent<Upgrade>()?.SetPlayer(player);
     }
 }

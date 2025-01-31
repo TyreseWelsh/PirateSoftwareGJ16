@@ -14,8 +14,8 @@ public class ShootComponent : MonoBehaviour
     [HideInInspector]public int currentAmmoCount = 0;
     [SerializeField] private int MAX_SHOOT_COUNT = 8;
     private int shootCounter = 0;
-    [SerializeField] private float fireRate = 0.3f;
-    [SerializeField] private float reloadSpeed = 1f;
+    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float reloadSpeed = 1.2f;
     [SerializeField] private int baseCritRate = 0;
     
     [Header("")]
@@ -43,7 +43,6 @@ public class ShootComponent : MonoBehaviour
     {
         statManager = GetComponent<StatManagerComponent>();
         animator = mesh.GetComponent<Animator>();
-
     }
 
     // Start is called before the first frame update
@@ -233,11 +232,12 @@ public class ShootComponent : MonoBehaviour
     
     IEnumerator Reloading()
     {
-        yield return new WaitForSeconds(GetReloadSpeed(true));
+        yield return new WaitForSeconds( 2 - GetReloadSpeed(true));
+        
         currentAmmoCount = MAX_AMMO_COUNT;
         shootCounter = 1;
         bCanShoot = true;
-        Debug.Log("Weapons reloaded!");
+        Debug.Log("Weapons reloaded!" + (2 - GetReloadSpeed(true)));
         
         reloadCoroutine = null;
     }

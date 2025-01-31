@@ -3,15 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Upgrade : MonoBehaviour
 {
     [SerializeField] private string statType;
     [SerializeField] private int currentPickupTime = 0;
     [SerializeField] private int MAX_PICKUP_TIME = 4;
+
+    [SerializeField] private List<SO_UpgradeBar> upgradeDataList;
+    private SO_UpgradeBar selectedUpgrade;
+    [SerializeField] private Image upgradeImage;
     
     private SphereCollider pickupRadius;
-    private GameObject player;
+    [HideInInspector] public GameObject player;
 
     private Coroutine pickupCoroutine;
     private Coroutine dropCoroutine;
@@ -25,12 +30,34 @@ public class Upgrade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (player)
+        {
+            // Rotate to look in player direction
+            Vector3 playerPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            transform.LookAt(playerPosition);
+        }
     }
 
+    public void SetPlayer(GameObject newPlayer)
+    {
+        player = newPlayer;
+    }
+    
     public void SetStatType(string newType)
     {
         statType = newType;
+        foreach (SO_UpgradeBar upgradeData in upgradeDataList)
+        {
+            if (statType == upgradeData._name)
+            {
+                selectedUpgrade = upgradeData;
+            }
+        }
+
+        if (selectedUpgrade)
+        {
+            upgradeImage.sprite = selectedUpgrade._icon;
+        }
         Debug.Log("Spawned upgrade of type: " + statType);
     }
     
@@ -94,34 +121,6 @@ public class Upgrade : MonoBehaviour
         StatManagerComponent playerStatManager = player.GetComponent<StatManagerComponent>();
         if (playerStatManager)
         {
-            /*switch (upgradeType)
-            {
-                case UpgradeTypes.Health:
-                    playerStatManager.IncrementStatAmount("Health");
-                    break;
-                case UpgradeTypes.HealthRegen:
-                    playerStatManager.IncrementStatAmount("HealthRegen");
-                    break;
-                case UpgradeTypes.Damage:
-                    playerStatManager.IncrementStatAmount("Damage");
-                    break;
-                case UpgradeTypes.FireRate:
-                    playerStatManager.IncrementStatAmount("FireRate");
-                    break;
-                case UpgradeTypes.ReloadSpeed:
-                    playerStatManager.IncrementStatAmount("ReloadSpeed");
-                    break;
-                case UpgradeTypes.CritRate:
-                    playerStatManager.IncrementStatAmount("CritRate");
-                    break;
-                case UpgradeTypes.Range:
-                    playerStatManager.IncrementStatAmount("Range");
-                    break;
-                case UpgradeTypes.MoveSpeed:
-                    playerStatManager.IncrementStatAmount("MoveSpeed");
-                    break;*/
-            //}
-            
             playerStatManager.IncrementStatAmount(statType);
         }
     }
