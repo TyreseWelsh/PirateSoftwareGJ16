@@ -9,7 +9,8 @@ using UnityEngine.TextCore.Text;
 public class MainPlayerController : MonoBehaviour, IMobile
 {
     [SerializeField] private GameObject mesh;
-    [SerializeField] private GameObject AnimatedMesh;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject player;
     private Animator animator;
     [SerializeField] private Transform cameraTransform;
     private StatManagerComponent statManager;
@@ -19,7 +20,8 @@ public class MainPlayerController : MonoBehaviour, IMobile
     private float gravity = 34f;
     [SerializeField] private float lookRotationSpeed = 40f;
     [HideInInspector] public Vector3 moveDirection;
-
+    [HideInInspector]public bool isPaused = false;
+    
     [SerializeField] GameObject spawner;
 
     [HideInInspector] public CharacterController controller;
@@ -90,6 +92,47 @@ public class MainPlayerController : MonoBehaviour, IMobile
                 animator.SetTrigger(name: "isJumping");
             }
         }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!isPaused)
+            {
+                Debug.Log("Pause");
+                pause();
+            }
+            else
+            {
+                Debug.Log("UnPause");
+                unPause();
+            }
+        }
+
+    }
+
+    public void pause()
+    {
+        
+        isPaused = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+            
+        
+    }
+
+    public void unPause()
+    {
+
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        isPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
     }
     
     public float GetMoveSpeed(bool modified)
