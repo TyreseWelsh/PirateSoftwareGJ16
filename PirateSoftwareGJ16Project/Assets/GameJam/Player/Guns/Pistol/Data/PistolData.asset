@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb9048ad7bb83c4195804f6118cc8d3, type: 3}
   m_Name: PistolData
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 5104fa2d00ece194abdaa70923c94c58, type: 3}
   gunName: Pistol
   description: A basic pistol.
   shootInterval: 2

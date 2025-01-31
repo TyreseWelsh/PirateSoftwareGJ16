@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb9048ad7bb83c4195804f6118cc8d3, type: 3}
   m_Name: SniperData
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: f074aad294123a34b879379b25a12281, type: 3}
   gunName: Cool Sniper
   description: Long Range and super cool... (get it)
   shootInterval: 5
