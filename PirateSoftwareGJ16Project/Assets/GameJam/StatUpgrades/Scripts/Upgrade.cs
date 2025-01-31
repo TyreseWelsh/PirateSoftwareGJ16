@@ -15,7 +15,7 @@ public class Upgrade : MonoBehaviour
     private SO_UpgradeBar selectedUpgrade;
     [SerializeField] private Image upgradeImage;
     
-    private SphereCollider pickupRadius;
+    [SerializeField] Slider pickupTimerSlider;
     [HideInInspector] public GameObject player;
 
     private Coroutine pickupCoroutine;
@@ -24,7 +24,11 @@ public class Upgrade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pickupRadius = GetComponent<SphereCollider>();
+        if (pickupTimerSlider)
+        {
+            pickupTimerSlider.maxValue = MAX_PICKUP_TIME;
+            pickupTimerSlider.value = 0;
+        }
     }
 
     // Update is called once per frame
@@ -95,6 +99,7 @@ public class Upgrade : MonoBehaviour
         while (currentPickupTime < MAX_PICKUP_TIME)
         {
             currentPickupTime++;
+            pickupTimerSlider.value = currentPickupTime;
             yield return new WaitForSeconds(1);
             yield return null;
         }
@@ -109,6 +114,7 @@ public class Upgrade : MonoBehaviour
        while (currentPickupTime > 0)
        {
            currentPickupTime--;
+           pickupTimerSlider.value = currentPickupTime;
            yield return new WaitForSeconds(1);
            yield return null;
        }
