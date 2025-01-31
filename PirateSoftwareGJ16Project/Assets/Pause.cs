@@ -54,6 +54,7 @@ public class Pause : MonoBehaviour
 
     public void exitGame()
     {
-        SceneManager.LoadScene(2);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

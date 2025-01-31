@@ -8,7 +8,7 @@ public class PlayerHealthComponent : HealthComponent, IDamageable
     
     public override void Die()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
         base.Die();
     }
 }
