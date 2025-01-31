@@ -38,8 +38,8 @@ public class ShootComponent : MonoBehaviour
     
     private Coroutine reloadCoroutine;
     [SerializeField] List<AudioClip> reloadSounds;
-    
-    
+
+
     // "Key" dictates at what multiple the weapons will be fired e.g. Shotguns may be added to "3" meaning that they will fire every 3rd shot 
     private List<bool> nextGunOnRightSide = new List<bool>();
     private Dictionary<int, List<GameObject>> leftSideGuns = new Dictionary<int, List<GameObject>>();
