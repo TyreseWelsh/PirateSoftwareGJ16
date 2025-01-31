@@ -6,6 +6,9 @@ using UnityEngine;
 public class StatusEffectComponent : MonoBehaviour
 {
     public GameObject effectSource;
+
+    [SerializeField] SkinnedMeshRenderer meshRenderer;
+    [SerializeField] Material originalMaterial;
     
     public enum StatusEffectType
     {
@@ -16,12 +19,17 @@ public class StatusEffectComponent : MonoBehaviour
 
     private List<StatusEffectType> currentStatusEffects;
     // Frost
+    [Header("Frost")]
+    [SerializeField] Material frostMaterial;
     private IMobile movementInterface;
     private float frostSlow = 0.5f;
     private Coroutine frostCoroutine;
     private float frostDuration = 2.5f;
     
     // Burn
+    [Header("Burn")]
+    [SerializeField] ParticleSystem burnParticles;
+    private ParticleSystem burnParticlesObject;
     private IDamageable damageableInterface;
     private int burnDamage = 3;
     private int burnTicks = 4;
@@ -56,6 +64,7 @@ public class StatusEffectComponent : MonoBehaviour
             if (movementInterface != null)
             {
                 movementInterface.SetMoveSpeed(movementInterface.GetMoveSpeed(false) * frostSlow );
+                meshRenderer.material = frostMaterial;
                 frostCoroutine = StartCoroutine(FrostSlowTimer());
             }
         }
@@ -77,6 +86,7 @@ public class StatusEffectComponent : MonoBehaviour
     private void RemoveFrost()
     {
         movementInterface.SetMoveSpeed(movementInterface.GetMoveSpeed(false) * frostSlow );
+        meshRenderer.material = originalMaterial;
         frostCoroutine = null;
         currentStatusEffects.Remove(StatusEffectType.Frost);
         
@@ -87,6 +97,7 @@ public class StatusEffectComponent : MonoBehaviour
         currentBurnDuration = MAX_BURN_DURATION;
         if (burnCoroutine == null)
         {
+            burnParticlesObject = Instantiate(burnParticles, transform.position, Quaternion.identity);
             burnCoroutine = StartCoroutine(BurnTimer(source));
         }
     }
@@ -108,6 +119,7 @@ public class StatusEffectComponent : MonoBehaviour
     private void RemoveBurn()
     {
         burnCoroutine = null;
+        Destroy(burnParticlesObject);
         currentStatusEffects.Remove(StatusEffectType.Burn);
     }
 }

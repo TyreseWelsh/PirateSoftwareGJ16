@@ -21,6 +21,8 @@ public class ShotgunScript : GunScript
 
     public override void Shoot(bool isCrit)
     {
+        FlashMuzzle();
+        
         for (int i = 0; i < numProjectiles; i++)
         {
             Vector3 projectileDirection = transform.forward + new Vector3(Random.Range(-spreadOffset, spreadOffset), Random.Range(-spreadOffset, spreadOffset), Random.Range(-spreadOffset, spreadOffset));

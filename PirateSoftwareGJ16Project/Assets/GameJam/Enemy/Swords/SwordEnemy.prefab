@@ -250,6 +250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectSource: {fileID: 0}
+  meshRenderer: {fileID: 3266985621304927060}
+  originalMaterial: {fileID: 2100000, guid: e025a4bc51ce2a743864d75ac82151d4, type: 2}
+  frostMaterial: {fileID: 2100000, guid: 36d17ef0e115a9e4eb79bf2d44a31c5e, type: 2}
+  burnParticles: {fileID: 4923973159084627907, guid: e016f52da5eab514aa799c6c4acb097d, type: 3}
 --- !u!1001 &6634855407201179020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,6 +302,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1061415980716116264, guid: 9f8497745cb6c164c98b388a897eced6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -926881087610041092, guid: 9f8497745cb6c164c98b388a897eced6, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -331,6 +339,11 @@ PrefabInstance:
 --- !u!4 &2968593335503663037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8440082418790562353, guid: 9f8497745cb6c164c98b388a897eced6, type: 3}
+  m_PrefabInstance: {fileID: 6634855407201179020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &3266985621304927060 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1061415980716116264, guid: 9f8497745cb6c164c98b388a897eced6, type: 3}
   m_PrefabInstance: {fileID: 6634855407201179020}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5823950394241542365 stripped

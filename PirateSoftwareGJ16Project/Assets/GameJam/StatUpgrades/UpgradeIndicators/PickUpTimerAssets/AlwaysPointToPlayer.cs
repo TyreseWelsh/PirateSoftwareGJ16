@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,11 @@ using UnityEngine;
 public class AlwaysPointToPlayer : MonoBehaviour
 {
     public Camera thirdPersonCam;
+
+    private void Start()
+    {
+        thirdPersonCam = Camera.main;
+    }
 
     // Update is called once per frame
     void LateUpdate()

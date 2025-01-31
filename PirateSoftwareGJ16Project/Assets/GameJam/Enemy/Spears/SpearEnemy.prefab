@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 367034480104237728}
   - component: {fileID: 8947012737180599748}
   - component: {fileID: 6999787062922237382}
+  - component: {fileID: 5188985122569730363}
   m_Layer: 0
   m_Name: SpearEnemy
   m_TagString: Untagged
@@ -167,6 +168,23 @@ MonoBehaviour:
   originalMaterial: {fileID: 2100000, guid: e025a4bc51ce2a743864d75ac82151d4, type: 2}
   damageableMeshes: []
   debugEnabled: 0
+--- !u!114 &5188985122569730363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2565971690211320093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010ee1e2974abaa4ba0395f9afce8079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSource: {fileID: 0}
+  meshRenderer: {fileID: 5713542063308073639}
+  originalMaterial: {fileID: 2100000, guid: e025a4bc51ce2a743864d75ac82151d4, type: 2}
+  frostMaterial: {fileID: 2100000, guid: 36d17ef0e115a9e4eb79bf2d44a31c5e, type: 2}
+  burnParticles: {fileID: 4923973159084627907, guid: e016f52da5eab514aa799c6c4acb097d, type: 3}
 --- !u!1 &7767858103673808502
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,5 +371,10 @@ MonoBehaviour:
 --- !u!4 &1121178395710464480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dce1960b8b165f5469d3af12023c46b7, type: 3}
+  m_PrefabInstance: {fileID: 578009633350174219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5713542063308073639 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4085023733189858132, guid: dce1960b8b165f5469d3af12023c46b7, type: 3}
   m_PrefabInstance: {fileID: 578009633350174219}
   m_PrefabAsset: {fileID: 0}

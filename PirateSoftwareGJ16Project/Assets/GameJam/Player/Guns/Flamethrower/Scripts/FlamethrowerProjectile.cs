@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class FlamethrowerProjectile : PistolBulletScript
 {
+    [SerializeField] private ParticleSystem flameParticles;
+    
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
+        if (flameParticles)
+        {
+            flameParticles.Play();
+        }
     }
 
     // Update is called once per frame

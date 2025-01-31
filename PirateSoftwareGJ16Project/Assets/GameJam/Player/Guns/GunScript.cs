@@ -6,6 +6,8 @@ public class GunScript : MonoBehaviour
 {
     [SerializeField] protected GunScriptableObject gunData;
     [SerializeField] public GameObject gunMuzzle;
+    [SerializeField] protected ParticleSystem muzzleFlashParticles;
+    protected ParticleSystem muzzleFlashObject;
 
     private GameObject player;
     [HideInInspector] public Transform playerCameraTransform;
@@ -52,6 +54,8 @@ public class GunScript : MonoBehaviour
     
     public virtual void Shoot(bool isCrit)
     {
+        FlashMuzzle();
+        
         GameObject newProjectile = Instantiate(gunData.projectilePrefab, gunMuzzle.transform.position, transform.rotation);
         PistolBulletScript projectileScript = newProjectile.GetComponent<PistolBulletScript>();
 
@@ -59,6 +63,15 @@ public class GunScript : MonoBehaviour
         {
             projectileScript.InitOwner(player);
             projectileScript.isCrit = isCrit;
+        }
+    }
+
+    protected void FlashMuzzle()
+    {
+        if (gunMuzzle && muzzleFlashParticles)
+        {
+            muzzleFlashObject = Instantiate(muzzleFlashParticles, gunMuzzle.transform);
+            muzzleFlashObject.Play();
         }
     }
 }

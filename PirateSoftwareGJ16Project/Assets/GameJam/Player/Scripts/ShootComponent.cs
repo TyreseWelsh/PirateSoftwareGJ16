@@ -32,6 +32,8 @@ public class ShootComponent : MonoBehaviour
     [HideInInspector] public bool bHoldingTrigger;
     [HideInInspector] public bool bCanShoot = true;
     private Coroutine shootCoroutine;
+    [SerializeField] protected ParticleSystem muzzleFlashParticles;
+    protected ParticleSystem muzzleFlashObject;
     [SerializeField] List<AudioClip> shootSounds;
     
     private Coroutine reloadCoroutine;
@@ -77,6 +79,8 @@ public class ShootComponent : MonoBehaviour
             else
             {
                 bCanShoot = false;
+                FlashMuzzle();
+                
                 if (shootCounter >= MAX_SHOOT_COUNT)
                 {
                     shootCounter = 0;
@@ -114,6 +118,15 @@ public class ShootComponent : MonoBehaviour
                 animator.SetTrigger(name: "isShooting");
                 shootCoroutine = StartCoroutine(UntilNextShot());
             }
+        }
+    }
+
+    private void FlashMuzzle()
+    {
+        if (baseMuzzle)
+        {
+            muzzleFlashObject = Instantiate(muzzleFlashParticles, baseMuzzle.transform);
+            muzzleFlashObject.Play();
         }
     }
 
@@ -190,13 +203,16 @@ public class ShootComponent : MonoBehaviour
 
     private void PlayShootSound()
     {
-        int randSoundIndex = Random.Range(0, 3);
-        float pitch = Random.Range(0.9f, 1.10f);
-        float volume = Random.Range(0.85f, 1.0f);
-        AudioClip shootSound = shootSounds[randSoundIndex];
+        if (shootSounds.Count > 0)
+        {
+            int randSoundIndex = Random.Range(0, 3);
+            float pitch = Random.Range(0.9f, 1.10f);
+            float volume = Random.Range(0.85f, 1.0f);
+            AudioClip shootSound = shootSounds[randSoundIndex];
 
-        audioSource.pitch = pitch;
-        audioSource.PlayOneShot(shootSound, volume);
+            audioSource.pitch = pitch;
+            audioSource.PlayOneShot(shootSound, volume);
+        }
     }
 
     private Quaternion CalculateProjectileRotation()
@@ -249,13 +265,16 @@ public class ShootComponent : MonoBehaviour
 
     private void PlayReloadSound()
     {
-        int randSoundIndex = Random.Range(0, 3);
-        float pitch = Random.Range(0.9f, 1.10f);
-        float volume = Random.Range(0.85f, 1.0f);
-        AudioClip reloadSound = reloadSounds[randSoundIndex];
+        if (reloadSounds.Count > 0)
+        {
+            int randSoundIndex = Random.Range(0, 3);
+            float pitch = Random.Range(0.9f, 1.10f);
+            float volume = Random.Range(0.85f, 1.0f);
+            AudioClip reloadSound = reloadSounds[randSoundIndex];
 
-        audioSource.pitch = pitch;
-        audioSource.PlayOneShot(reloadSound, volume);
+            audioSource.pitch = pitch;
+            audioSource.PlayOneShot(reloadSound, volume);
+        }
     }
     
     IEnumerator Reloading()

@@ -21,6 +21,8 @@ public class FlamethrowerScript : GunScript
 
     public override void Shoot(bool isCrit)
     {
+        FlashMuzzle();
+        
         float currentShootAngle = (numProjectiles - 1) * -(spreadAngle / 2);
         for (int i = 0; i < numProjectiles; ++i)
         {

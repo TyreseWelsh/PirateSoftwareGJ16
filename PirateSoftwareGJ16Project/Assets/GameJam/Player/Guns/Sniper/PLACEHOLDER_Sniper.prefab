@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 34cdf88c438f9c54d812d7c2fccd77b9, type: 2}
   gunMuzzle: {fileID: 2831859428164130297}
+  muzzleFlashParticles: {fileID: 7036036841988301643, guid: 75351cebb14a0cd4aade3f31ef090202, type: 3}
   playerCameraTransform: {fileID: 0}
 --- !u!1 &2831859428164130297
 GameObject:
