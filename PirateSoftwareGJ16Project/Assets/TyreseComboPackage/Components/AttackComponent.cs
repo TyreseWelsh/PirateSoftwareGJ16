@@ -71,7 +71,7 @@ public class AttackComponent : MonoBehaviour
 
                 GetComponent<IMobile>()?.SetMoveSpeed(0);
                 canAttack = false;
-                ownerAnimator.SetFloat("AnimationSpeed", comboData.comboAttacks[comboAttackCounter].animationSpeed);
+                //ownerAnimator.SetFloat("AnimationSpeed", comboData.comboAttacks[comboAttackCounter].animationSpeed);
                 ownerAnimator.Play(comboData.comboAttacks[comboAttackCounter].animationName);
             }
         }

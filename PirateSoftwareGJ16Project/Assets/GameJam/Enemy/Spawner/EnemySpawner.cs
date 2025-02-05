@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -56,14 +55,14 @@ public class EnemySpawner : MonoBehaviour
         Debug.DrawLine(transform.position, weightAffectorZ.transform.position, Color.blue);
         
         
-        if (isEnabled)
+        /*if (isEnabled)
         {
             if (currentEnemies < maxEnemies)
             {
                 // TODO: Make sure enemies keep spawning as others die, and every so often spawn a new enemy anyway
                 //CalculateWeighting();
             }
-        }
+        }*/
     }
 
     private void InitialiseEnemyTypes()
@@ -87,7 +86,7 @@ public class EnemySpawner : MonoBehaviour
             existanceTime += Time.deltaTime;
             if (existanceTime >= spawnIncreaseInterval)
             {
-                spawnIncreaseInterval *= 1.5f;
+                spawnIncreaseInterval *= 1.3f;
                 numToSpawn += 2;
                 maxEnemies = Mathf.CeilToInt(maxEnemies * 1.6f);
             }
@@ -160,29 +159,35 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemyType)
     {
-        Vector3 endPoint1 = player.transform.position + Random.insideUnitSphere * spawnRange;
-        endPoint1.y = player.transform.position.y + 5;
+        Vector3 spawnPoint2D = player.transform.position + Random.insideUnitSphere * spawnRange;
+        spawnPoint2D.y = player.transform.position.y + 5;
         
         //Debug.DrawLine(transform.position, endPoint1, Color.yellow, 100f);
 
         Vector2 spawnerPosition2D = new Vector2(transform.position.x, transform.position.z);
-        Vector2 spawnPosition2D = new Vector2(endPoint1.x, endPoint1.z);
-        if (Vector2.Distance(spawnerPosition2D, spawnPosition2D) > spawnRange / 3f && endPoint1.y > transform.position.y + 2)
+        Vector2 spawnPosition2D = new Vector2(spawnPoint2D.x, spawnPoint2D.z);
+        // Finding spawn X/Y
+        if (Vector2.Distance(spawnerPosition2D, spawnPosition2D) > spawnRange / 3f && spawnPoint2D.y > transform.position.y + 2)
         {
-            Debug.DrawLine(transform.position, endPoint1, Color.yellow, 100f);
+            Debug.DrawLine(transform.position, spawnPoint2D, Color.yellow, 8f);
 
+            // Finding spawn Z from line trace downwards at spawnPoint2D
             RaycastHit hit;
-            if (Physics.Raycast(endPoint1, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+            if (Physics.Raycast(spawnPoint2D, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
-                Debug.DrawRay(endPoint1, transform.TransformDirection(Vector3.down) * 100f, Color.cyan, 100f);
-                NavMeshHit navMeshHit;
-                /*if (NavMesh.SamplePosition(hit.point, out navMeshHit, Mathf.Infinity, 0))
-                {*/
-                    Debug.DrawLine(endPoint1, hit.point, Color.green, 100f);
+                Debug.DrawRay(spawnPoint2D, transform.TransformDirection(Vector3.down) * 100f, Color.cyan, 8f);
+                
+                Debug.DrawLine(transform.position, hit.point, Color.green, 30f);
+                // Line trace to potential spawn point was not blocked by "OuterEnvironment" (environment object that would lead out of map
+                RaycastHit blockingEnvHit;
+                if (!Physics.Raycast(transform.position, (spawnPoint2D - transform.position).normalized, out blockingEnvHit, spawnRange, LayerMask.GetMask("OuterEnvironment")))
+                {
+                    // Spawn point is inside map
+                    Debug.DrawLine(transform.position, hit.point, Color.green, 30f);
+                    
                     Vector3 spawnPoint = hit.point;
                     GameObject enemyObject = Instantiate(enemyType, spawnPoint, Quaternion.identity);
                     enemyObject.GetComponent<BaseEnemy>()?.SetPlayer(player);
-                    //enemyObject.GetComponent<AIDestinationSetter>().target = player.transform;
                     if (enemyObject.GetComponent<HealthComponent>()?.onDeathDelegate != null)
                     {
                         enemyObject.GetComponent<HealthComponent>().onDeathDelegate += ReduceCurrentEnemyCount;
@@ -191,17 +196,12 @@ public class EnemySpawner : MonoBehaviour
                     
                     //Debug.Log("Spawned enemy!!!");
                     currentEnemies++;
-                //}
-                /*else
-                {
-
-                }*/
+                }
             }
             else
             {
-                SpawnEnemy(enemyType);
-
                 // Try and spawn an enemy again
+                SpawnEnemy(enemyType);
             }
         }
     }
