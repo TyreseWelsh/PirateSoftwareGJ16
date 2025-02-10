@@ -177,24 +177,25 @@ public class EnemySpawner : MonoBehaviour
             {
                 Debug.DrawRay(spawnPoint2D, transform.TransformDirection(Vector3.down) * 100f, Color.cyan, 8f);
                 
-                Debug.DrawLine(transform.position, hit.point, Color.green, 30f);
+                //Debug.DrawLine(transform.position, hit.point, Color.green, 30f);
                 // Line trace to potential spawn point was not blocked by "OuterEnvironment" (environment object that would lead out of map
-                RaycastHit blockingEnvHit;
-                if (!Physics.Raycast(transform.position, (spawnPoint2D - transform.position).normalized, out blockingEnvHit, spawnRange, LayerMask.GetMask("OuterEnvironment")))
+                NavMeshHit navHit;
+                if (NavMesh.SamplePosition(hit.point, out navHit, 3f, NavMesh.AllAreas))
                 {
                     // Spawn point is inside map
-                    Debug.DrawLine(transform.position, hit.point, Color.green, 30f);
+                    Debug.DrawLine(transform.position, navHit.position, Color.red, 30f);
                     
                     Vector3 spawnPoint = hit.point;
                     GameObject enemyObject = Instantiate(enemyType, spawnPoint, Quaternion.identity);
                     enemyObject.GetComponent<BaseEnemy>()?.SetPlayer(player);
-                    if (enemyObject.GetComponent<HealthComponent>()?.onDeathDelegate != null)
+                    if (enemyObject.GetComponent<HealthComponent>())
                     {
                         enemyObject.GetComponent<HealthComponent>().onDeathDelegate += ReduceCurrentEnemyCount;
                         enemyObject.GetComponent<HealthComponent>().onDeathDelegate += CalculateWeighting;
+                        Debug.Log("Bind onDeath delegates");
+
                     }
                     
-                    //Debug.Log("Spawned enemy!!!");
                     currentEnemies++;
                 }
             }
